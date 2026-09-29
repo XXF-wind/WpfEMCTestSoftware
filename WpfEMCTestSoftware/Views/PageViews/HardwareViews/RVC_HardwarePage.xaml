@@ -1,0 +1,331 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfEMCTestSoftware.Views.PageViews.HardwareViews"
+      xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls" 
+      xmlns:Enums ="clr-namespace:WpfEMCTestSoftware.Enums"
+      x:Class="WpfEMCTestSoftware.Views.PageViews.HardwareViews.RVC_HardwarePage"
+      DataContext="{Binding RVC_HardwareViewModel, Source={StaticResource Locator}}"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1200"
+      Title="RVC_HardwarePage">
+        
+    <Viewbox Stretch="Fill">
+        <Grid Height="600" Width="1200">
+            <!-- 统一所有 StackPanel：Width="150" Height="110" -->
+            <!--信号源-->
+            <StackPanel Orientation="Vertical" Margin="14,88,0,0" HorizontalAlignment="Left" Width="150" Height="110" VerticalAlignment="Top">
+                <Button  Height="50" Width="80" HorizontalAlignment="Center" Margin="5"
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0" Cursor="Arrow">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/signalsource.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Height="25" Margin="5"
+            Text ="{ Binding CurRVCHardModel.ListDeviceInfos[0].Name}"          
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding SignalSourceNames}" />
+            </StackPanel>
+            <!--开关1-->
+            <StackPanel Orientation="Vertical" Margin="211,97,0,0" HorizontalAlignment="Left" Width="150" Height="110" VerticalAlignment="Top">
+                <Button  Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="4"
+            Width="35" Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/switch.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Height="25"
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[1].Name}" Margin="5  "
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding SwitchMatrixNames}"/>
+                <ComboBox Height="24"   VerticalAlignment="Center" 
+            FontSize="18" HorizontalAlignment="Center" Width="66" Background="#ffffff"        
+            ItemsSource="{Binding Switch1}"  SelectedIndex="{Binding CurRVCHardModel.K1CMD, TargetNullValue=0}"/>
+            </StackPanel>
+            <!--功放-->
+            <StackPanel Orientation="Vertical" Margin="376,88,674,390" Width="150" Height="110">
+                <Button Height="50" VerticalAlignment="Top" HorizontalAlignment="Center"  Margin="5"
+            Width="100" Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/Amplifier.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Height="25"
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[2].Name}" Margin="5"
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding AmplifierNames}"/>
+            </StackPanel>
+            <!--开关2-->
+            <StackPanel Orientation="Vertical" Margin="530,135,520,355" Width="150" Height="110">
+                <Button Height="35" Width="35"  Margin="5"
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/switch.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Width="66" Height="24" Background="#ffffff" FontSize="18" Margin="5"
+            ItemsSource="{Binding Switch2}" SelectedIndex="{Binding CurRVCHardModel.K2CMD, TargetNullValue=0}"/>
+            </StackPanel>
+            <!--发射天线 设备3-->
+            <StackPanel Orientation="Vertical" Margin="708,88,342,381" Width="150" Height="110">
+                <Button Height="71" Width="84" 
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/antennaEmitter.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Height="25"
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[11].Name}" 
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding FieldStrengthNames}"/>
+            </StackPanel>
+
+            <!--接收天线 设备4-->
+            <StackPanel Orientation="Vertical" Margin="0,88,14,0" HorizontalAlignment="Right" Width="150" Height="110" VerticalAlignment="Top">
+                <Button Height="71" Width="84" 
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/antennaReceiver.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Height="25"
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[12].Name}" 
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding FieldStrengthNames}"/>
+            </StackPanel>
+            <!--开关3-->
+            <StackPanel Orientation="Vertical" Margin="226,278,824,212" Width="150" Height="110">
+                <Button Height="35" Width="35"  Margin="5"
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/switch.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Width="66" Height="24" Background="#ffffff" FontSize="18" Margin="5"
+            ItemsSource="{Binding Switch3}" SelectedIndex="{Binding CurRVCHardModel.K3CMD, TargetNullValue=0}"/>
+            </StackPanel>
+            <!--开关4-->
+            <StackPanel Orientation="Vertical" Margin="499,277,551,213" Width="150" Height="110">
+                <Button Height="35" Width="35"  Margin="5"
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/switch.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Width="66" Height="24" Background="#ffffff" FontSize="18" Margin="5"
+            ItemsSource="{Binding Switch4}" SelectedIndex="{Binding CurRVCHardModel .K4CMD, TargetNullValue=0}" IsDropDownOpen="True"/>
+                <Controls:ArrowSeparator
+            Width="90" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+            BorderThickness="0,1,0,0" ShowEndArrow="False" Height="100"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Vertical" Margin="225,455,825,35" Width="150" Height="110">
+                <Button Height="50" Width="72" Margin="5"
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/inputpower.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Height="25"
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[3].Name}" 
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding PowerMeterames}"/>
+                <TextBlock Height="31" TextAlignment="Center" FontSize="20" 
+            Text="{DynamicResource DeviceTypeTitle_ForwardDynamometer}" Width="139"/>
+            </StackPanel>
+            <!--反向功率 设备6-->
+            <StackPanel Orientation="Vertical" Margin="503,455,547,32" Width="150" Height="110">
+                <Button Height="50" Width="72" Margin="5"
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/outputpower.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Height="25"
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[4].Name}" 
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding PowerMeterames}"/>
+                <TextBlock Height="30" TextAlignment="Center" FontSize="20"
+            Text="{DynamicResource DeviceTypeTitle_ReverseDynamometer}" Width="167"/>
+
+            </StackPanel>
+            <!--设备塔垂直 设备7-->
+            <StackPanel Orientation="Vertical" Margin="716,281,334,209" Width="150" Height="110">
+                <Button 
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0" Height="60" Width="60">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/transorVertical.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[7].Name}" 
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding PowerMeterames}" Height="25"/>
+            </StackPanel>
+            <!--场强探头 设备8-->
+            <StackPanel Orientation="Vertical" Margin="870,88,181,402" Width="150" Height="110">
+                <Button  Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Margin="5"
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/probe.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Height="25"
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[5].Name}" 
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding FieldStrengthNames}"/>
+            </StackPanel>
+            <!--接收机 设备9-->
+            <StackPanel Orientation="Vertical" Margin="880,412,165,85" Width="150" Height="110">
+                <Button  Height="60" HorizontalAlignment="Center" Width="80" Margin="5"
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/接收机.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Height="25"
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[9].Name}" 
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding FieldStrengthNames}"/>
+            </StackPanel>
+            <!--接收机 设备10-->
+            <StackPanel Orientation="Vertical" Margin="0,0,7,87" Height="110" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150">
+                <Button  Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Width="80" Margin="5"
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/接收机.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox Height="25"
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[10].Name}" 
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding FieldStrengthNames}"/>
+            </StackPanel>
+            <!--水平塔 设备11-->
+            <StackPanel Orientation="Vertical" Margin="728,460,322,30" Width="150">
+                <Button 
+            Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0" Height="60" Width="60">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/transorHorizontal.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox
+            Text="{Binding CurRVCHardModel.ListDeviceInfos[6].Name}" 
+            FontSize="18" Background="#FFC3F6F9"
+            ItemsSource="{Binding PowerMeterames}" Height="25"/>
+            </StackPanel>
+
+            <!-- 以下非StackPanel控件 原样保留 -->
+            <Controls:StatusIconTextButton Content="StatusIconTextButton" Margin="171,99,0,0" IconSize="30" 
+        Background="#02E6E4E4" IconKind="PlusCircle" Cursor="Hand" 
+        HorizontalContentAlignment="Left" VerticalAlignment="Top"
+        Command="{Binding FileInputCommand}" CommandParameter="A"
+        HorizontalAlignment="Left" Width="29" Height="24" Label="" RenderTransformOrigin="0.733,2.711" Grid.Column="1" Grid.Row="1"/>
+            <Controls:StatusIconTextButton Content="StatusIconTextButton" Margin="285,362,0,0" IconSize="30" 
+        Background="#02E6E4E4" IconKind="PlusCircle" Cursor="Hand" 
+        HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+        Command="{Binding FileInputCommand}" CommandParameter="F"
+        Width="29" Height="24" VerticalAlignment="Top" Label="" RenderTransformOrigin="0.5,0.5">
+                <Controls:StatusIconTextButton.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-1.595"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Controls:StatusIconTextButton.RenderTransform>
+            </Controls:StatusIconTextButton>
+            <Controls:StatusIconTextButton Content="StatusIconTextButton" Margin="562,362,0,0" IconSize="30" 
+        Label="" Background="#02E6E4E4" IconKind="PlusCircle" 
+        HorizontalContentAlignment="Left" Cursor="Hand" 
+        Command="{Binding FileInputCommand}" CommandParameter="R"
+        HorizontalAlignment="Left" Width="30" Height="38" VerticalAlignment="Top" RenderTransformOrigin="-5.077,-0.489"/>
+            <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="380,240,0,0" VerticalAlignment="Top"
+        Width="105" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+        BorderThickness="0,1,0,0" RenderTransformOrigin="0.5,0.5" ShowEndArrow="False">
+                <Controls:ArrowSeparator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Controls:ArrowSeparator.RenderTransform>
+            </Controls:ArrowSeparator>
+            <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="323,293,0,0" VerticalAlignment="Top"
+        Width="109" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+        BorderThickness="0,1,0,0" ShowEndArrow="False" ShowStartArrow="False"/>
+            <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="390,240,0,0" VerticalAlignment="Top"
+        Width="105" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+        BorderThickness="0,1,0,0" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.5,0.5" ShowEndArrow="False">
+                <Controls:ArrowSeparator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Controls:ArrowSeparator.RenderTransform>
+            </Controls:ArrowSeparator>
+            <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="443,293,0,0" VerticalAlignment="Top"
+        Width="109" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+        BorderThickness="0,1,0,0" ShowStartArrow="False" ShowEndArrow="False"/>
+            <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="472,121,0,0" VerticalAlignment="Top"
+        Width="94" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+        BorderThickness="0,1,0,0" Grid.Column="1" Grid.Row="1" ShowEndArrow="False"/>
+            <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="610,122,0,0" VerticalAlignment="Top"
+        Width="68" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+        BorderThickness="0,1,0,0" Grid.Column="1" Grid.Row="1" ShowEndArrow="False"/>
+            <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="1119,389,0,0" VerticalAlignment="Top"
+        Width="32" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+        BorderThickness="0,1,0,0" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.5,0.5" ShowEndArrow="False">
+                <Controls:ArrowSeparator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Controls:ArrowSeparator.RenderTransform>
+            </Controls:ArrowSeparator>
+            <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="1100,408,0,0" VerticalAlignment="Top"
+        Width="37" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+        BorderThickness="0,1,0,0" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.5,0.5" ShowEndArrow="False">
+                <Controls:ArrowSeparator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Controls:ArrowSeparator.RenderTransform>
+            </Controls:ArrowSeparator>
+            <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="264,423,0,0" VerticalAlignment="Top"
+                Width="73" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+                BorderThickness="0,1,0,0" RenderTransformOrigin="0.5,0.5" ShowEndArrow="False">
+                <Controls:ArrowSeparator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Controls:ArrowSeparator.RenderTransform>
+            </Controls:ArrowSeparator>
+            <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="540,423,0,0" VerticalAlignment="Top"
+                Width="73" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+                BorderThickness="0,1,0,0" RenderTransformOrigin="0.5,0.5" ShowEndArrow="False">
+                <Controls:ArrowSeparator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Controls:ArrowSeparator.RenderTransform>
+            </Controls:ArrowSeparator>
+        </Grid>
+    </Viewbox>
+</Page>

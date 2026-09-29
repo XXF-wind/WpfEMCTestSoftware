@@ -1,0 +1,171 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls"
+    xmlns:models="clr-namespace:WpfEMCTestSoftware.Models"
+    xmlns:core="clr-namespace:WpfEMCTestSoftware.Core"
+    xmlns:viewmodels="clr-namespace:WpfEMCTestSoftware.ViewModels"
+    x:Class="WpfEMCTestSoftware.Views.DeviceListPage" 
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    DataContext="{Binding Source={StaticResource Locator}, Path=DeviceListViewModel}"
+    mc:Ignorable="d" 
+    d:DesignHeight="910" d:DesignWidth="1840"
+    Title="DeviceList">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="440*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="18*"/>
+        </Grid.ColumnDefinitions>
+        <TreeView ItemsSource="{Binding TreeItems}" SelectedItemChanged="TreeView_SelectedItemChanged"
+                  SelectedValuePath="Name"
+                  FontFamily="Microsoft YaHei" FontSize="24" Margin="0,0,0,0" Grid.Row="1" >
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type models:TreeItem}" ItemsSource="{Binding Children}">
+                    <StackPanel Orientation="Horizontal" Height="50">
+                        <Image Source="{Binding Icon}" Margin="10,0,5,10"/>
+                        <Label Content="{Binding Name}" HorizontalContentAlignment="Center" 
+                               VerticalContentAlignment="Center" FontSize="24" Foreground="{DynamicResource TextPrimaryBrush}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <!-- 智能 DataGrid（无后台代码） -->
+        <DataGrid x:Name="DeviceDataGrid" Grid.Row="1" ItemsSource="{Binding DeviceInfos}" Margin="0,0,0,0"
+                  IsReadOnly="True" AutoGenerateColumns="False" FontSize="24" SelectionMode="Single" Grid.Column="1"
+                  CanUserAddRows="False" CanUserDeleteRows="False" SelectedItem="{Binding CurrentdeviceInfo,Mode=TwoWay}"
+                  ContextMenuOpening="DeviceGrid_ContextMenuOpening"
+                  Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}">
+            <DataGrid.Resources>
+                <!-- 清除系统默认高亮资源，避免冲突 -->
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+            </DataGrid.Resources>
+
+            <!-- 单元格样式：核心！必须配套写 -->
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Padding" Value="4 0"/>
+                </Style>
+            </DataGrid.CellStyle>
+            <!--智能列生成行为（核心）-->
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding DoubleDeviceDataCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <i:Interaction.Behaviors>
+                <models:SmartDataGridColumnBehavior 
+                    ModelType="{x:Type models:DeviceInfo}"
+                    RefreshColumnsTrigger="{Binding RefreshColumnsTrigger}"/>
+            </i:Interaction.Behaviors>
+            <DataGrid.Style>
+                <Style TargetType="DataGrid">
+                    <!--网格线颜色-->
+                    <Setter Property="CanUserResizeColumns" Value="false"/>
+                    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"></Setter>
+                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"></Setter>
+                    <Setter Property="HeadersVisibility" Value="Column"/>
+                    <Setter Property="HorizontalGridLinesBrush">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{DynamicResource AccentColor}"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="VerticalGridLinesBrush">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{DynamicResource AccentColor}"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <!-- 行被选中时样式 -->
+               
+
+                <!-- 鼠标悬浮预览效果（可选，不加就删掉这段） -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#e4f0fc" />
+                </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Style>
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    <Setter Property="Background" Value="Transparent"></Setter>
+                    <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"></Setter>
+                    <Setter Property="BorderThickness" Value="1"></Setter>
+                    <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"></Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Height" Value="35"/>
+                    <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+                    <Style.Triggers>
+                        <!-- 选中行：背景改为你的主题色，字体白色 -->
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                        <!-- 鼠标悬浮（未选中时） -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+                            <Setter Property="Foreground" Value="White" />
+                        </MultiTrigger>
+                    </Style.Triggers>
+                </Style>
+                
+            </DataGrid.RowStyle>
+
+            <!-- 行右键菜单（支持绑定选中行数据）-->
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="查看详情" Command="{Binding ViewDetailCommand}" FontSize="12"/>
+                    <MenuItem Header="删除" Command="{Binding DeleteRowCommand}" FontSize="12"/>
+                    <MenuItem Header="复制" Command="{Binding CopyRowCommand}" FontSize="12"/>
+                    <MenuItem Header="重命名" Command="{Binding RenameRowCommand}" FontSize="12" />
+                             
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <Controls:StatusIconTextButton Grid.Column="1" Content="StatusIconTextButton" HorizontalAlignment="Left" 
+                                       Height="58" Margin="1059,0,0,0" VerticalAlignment="Center" Width="142"
+                                       IconSize="60" FontSize="28" Background="#19DDDDDD" Foreground="#FF3394FF"
+                                       Label="{DynamicResource SaveTitle}" IconKind="ContentSaveAllOutline"
+                                       Command="{Binding DeviceOperCommand}" CommandParameter="3"/>
+        <Controls:StatusIconTextButton Grid.Column="1" Content="StatusIconTextButton" HorizontalAlignment="Left" 
+                                       Height="58" Margin="349,0,0,0" VerticalAlignment="Center" Width="142"
+                                       IconSize="60" FontSize="28" Background="#19DDDDDD" Foreground="#FFFF3333"
+                                       Label="{DynamicResource DelTitle}" IconKind="TrashCanOutline"
+                                       Command="{Binding DeviceOperCommand}" CommandParameter="2"/>
+        <Controls:StatusIconTextButton Grid.Column="1" Content="StatusIconTextButton" HorizontalAlignment="Left" 
+                                       Height="58" Margin="180,0,0,0" VerticalAlignment="Center" Width="142"
+                                       IconSize="60" FontSize="28" Background="#19DDDDDD" Foreground="#FF3394FF"
+                                       Label="{DynamicResource EditTitle}" IconKind="PencilBoxMultipleOutline"
+                                       Command="{Binding DeviceOperCommand}" CommandParameter="1"/>
+        <Controls:StatusIconTextButton Grid.Column="1" Content="StatusIconTextButton" HorizontalAlignment="Left" 
+                                       Height="58" Margin="10,0,0,0" VerticalAlignment="Center" Width="142"
+                                       IconSize="60" FontSize="28" Background="#19DDDDDD" Foreground="#FF3394FF"
+                                       Label="{DynamicResource AddTitle}" IconKind="PlusBoxMultipleOutline"
+                                       Command="{Binding DeviceOperCommand}" CommandParameter="0"/>
+        <Controls:StatusIconTextButton Grid.Column="1" Content="StatusIconTextButton" HorizontalAlignment="Left"
+                                       Height="58" Margin="1244,0,0,0" VerticalAlignment="Center" Width="142"
+                                       IconSize="60" FontSize="28" Background="#19DDDDDD" Foreground="#FFFF3333"
+                                       Label="{DynamicResource ExitTitle}" IconKind="ExitToApp"
+                                       Command="{Binding DeviceOperCommand}" CommandParameter="4"/>
+    </Grid>
+</Page>

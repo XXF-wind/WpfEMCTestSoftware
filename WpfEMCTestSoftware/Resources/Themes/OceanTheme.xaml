@@ -1,0 +1,92 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 海洋蓝主题 · Ocean Blue -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <Color x:Key="AccentColor">#06B6D4</Color>
+    <Color x:Key="AccentHoverColor">#22D3EE</Color>
+    <Color x:Key="AccentLightColor">#164E63</Color>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="{StaticResource AccentHoverColor}"/>
+    <SolidColorBrush x:Key="AccentLightBrush" Color="{StaticResource AccentLightColor}"/>
+
+    <Color x:Key="PageBackgroundColor">#0A1628</Color>
+    <Color x:Key="SurfaceColor">#12233D</Color>
+    <Color x:Key="SurfaceAltColor">#0E1C33</Color>
+    <Color x:Key="CardBackgroundColor">#162D50</Color>
+    <SolidColorBrush x:Key="PageBackgroundBrush" Color="{StaticResource PageBackgroundColor}"/>
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}"/>
+    <SolidColorBrush x:Key="SurfaceAltBrush" Color="{StaticResource SurfaceAltColor}"/>
+    <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource CardBackgroundColor}"/>
+
+    <Color x:Key="TextPrimaryColor">#E0F2FE</Color>
+    <Color x:Key="TextSecondaryColor">#7DD3FC</Color>
+    <Color x:Key="TextMutedColor">#38BDF8</Color>
+    <Color x:Key="TextOnAccentColor">#0A1628</Color>
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}"/>
+    <SolidColorBrush x:Key="TextMutedBrush" Color="{StaticResource TextMutedColor}"/>
+    <SolidColorBrush x:Key="TextOnAccentBrush" Color="{StaticResource TextOnAccentColor}"/>
+
+    <Color x:Key="BorderColor">#1E4068</Color>
+    <Color x:Key="BorderStrongColor">#2563EB</Color>
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+    <SolidColorBrush x:Key="BorderStrongBrush" Color="{StaticResource BorderStrongColor}"/>
+
+    <Color x:Key="InputBackgroundColor">#0A1628</Color>
+    <Color x:Key="InputBorderColor">#1E4068</Color>
+    <Color x:Key="InputFocusBorderColor">#06B6D4</Color>
+    <SolidColorBrush x:Key="InputBackgroundBrush" Color="{StaticResource InputBackgroundColor}"/>
+    <SolidColorBrush x:Key="InputBorderBrush" Color="{StaticResource InputBorderColor}"/>
+    <SolidColorBrush x:Key="InputFocusBorderBrush" Color="{StaticResource InputFocusBorderColor}"/>
+
+    <Color x:Key="ButtonPrimaryBgColor">#06B6D4</Color>
+    <Color x:Key="ButtonPrimaryFgColor">#0A1628</Color>
+    <Color x:Key="ButtonSecondaryBgColor">#1E4068</Color>
+    <Color x:Key="ButtonSecondaryFgColor">#E0F2FE</Color>
+    <Color x:Key="ButtonDangerBgColor">#450A0A</Color>
+    <Color x:Key="ButtonDangerFgColor">#FCA5A5</Color>
+    <SolidColorBrush x:Key="ButtonPrimaryBgBrush" Color="{StaticResource ButtonPrimaryBgColor}"/>
+    <SolidColorBrush x:Key="ButtonPrimaryFgBrush" Color="{StaticResource ButtonPrimaryFgColor}"/>
+    <SolidColorBrush x:Key="ButtonSecondaryBgBrush" Color="{StaticResource ButtonSecondaryBgColor}"/>
+    <SolidColorBrush x:Key="ButtonSecondaryFgBrush" Color="{StaticResource ButtonSecondaryFgColor}"/>
+    <SolidColorBrush x:Key="ButtonDangerBgBrush" Color="{StaticResource ButtonDangerBgColor}"/>
+    <SolidColorBrush x:Key="ButtonDangerFgBrush" Color="{StaticResource ButtonDangerFgColor}"/>
+
+    <Color x:Key="SuccessColor">#34D399</Color>
+    <Color x:Key="WarningColor">#FBBF24</Color>
+    <Color x:Key="ErrorColor">#F87171</Color>
+    <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessColor}"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ErrorColor}"/>
+
+    <Color x:Key="HeaderBgColor">#0A1628</Color>
+    <Color x:Key="HeaderFgColor">#E0F2FE</Color>
+    <SolidColorBrush x:Key="HeaderBgBrush" Color="{StaticResource HeaderBgColor}"/>
+    <SolidColorBrush x:Key="HeaderFgBrush" Color="{StaticResource HeaderFgColor}"/>
+
+    <Color x:Key="StatusBarBgColor">#060F1C</Color>
+    <Color x:Key="StatusBarFgColor">#7DD3FC</Color>
+    <SolidColorBrush x:Key="StatusBarBgBrush" Color="{StaticResource StatusBarBgColor}"/>
+    <SolidColorBrush x:Key="StatusBarFgBrush" Color="{StaticResource StatusBarFgColor}"/>
+
+    <Color x:Key="ChartBgColor">#12233D</Color>
+    <Color x:Key="ChartGridColor">#1E4068</Color>
+    <Color x:Key="ChartAxesColor">#38BDF8</Color>
+    <SolidColorBrush x:Key="ChartBgBrush" Color="{StaticResource ChartBgColor}"/>
+    <SolidColorBrush x:Key="ChartGridBrush" Color="{StaticResource ChartGridColor}"/>
+    <SolidColorBrush x:Key="ChartAxesBrush" Color="{StaticResource ChartAxesColor}"/>
+
+    <Color x:Key="ShadowColor">#000000</Color>
+    <Color x:Key="PanelHeaderBgColor">#164E63</Color>
+    <Color x:Key="PanelHeaderFgColor">#67E8F9</Color>
+    <SolidColorBrush x:Key="PanelHeaderBgBrush" Color="{StaticResource PanelHeaderBgColor}"/>
+    <SolidColorBrush x:Key="PanelHeaderFgBrush" Color="{StaticResource PanelHeaderFgColor}"/>
+
+    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#164E63"/>
+    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#67E8F9"/>
+    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#06B6D4"/>
+    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#0A1628"/>
+</ResourceDictionary>

@@ -1,0 +1,319 @@
+﻿<Page 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+    x:Class="WpfEMCTestSoftware.Views.EMSHardwarePage"
+    DataContext="{Binding EMSHardViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d" FontSize="32"
+    Height="488" Width="1100">
+   
+    <Viewbox Stretch="Uniform">
+        <Grid Height="488" Width="1100">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#F0F8FF" Offset="0"/>
+                    <GradientStop Color="#FFC7F1FF" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.62*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1181*"/>
+                    <ColumnDefinition Width="Auto" MinWidth="47"/>
+                    <ColumnDefinition Width="52*"/>
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Column="0"
+                    ItemTemplate="{StaticResource TileItemTemplate}" 
+                  ItemContainerStyle="{StaticResource ListViewItemStyle                                                                                                                                                                      }" 
+                  ItemsSource="{Binding TitleBands}"
+                  SelectedIndex="{Binding SelBandIndex}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                  Background="{x:Null}" Cursor="Arrow" BorderThickness="0,0,0,1">
+                    <i:Interaction.Triggers>
+                        <!-- 将SelectionChanged事件绑定到命令 -->
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
+                               PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <!-- 禁用横向滚动，强制WrapPanel换行 -->
+                    <!-- 替换默认的StackPanel为WrapPanel（平铺布局核心） -->
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"  
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+                <Controls:StatusIconTextButton 
+                    Grid.Column="1" Height="42"  Width="42" 
+                    Margin="0" VerticalAlignment="Center" 
+                    HorizontalAlignment="Left"
+                    Label=""
+                    IconSize="42"  Background="#19DDDDDD" Foreground="#FF00610A" 
+                    IconKind="AddBold"  Command="{Binding AddFreBandCommand}"
+                    />
+                <Controls:StatusIconTextButton 
+                     Grid.Column="2" Height="42" Width="42" VerticalAlignment="Center"
+                     HorizontalAlignment="Left" Label=""
+                     IconSize="42"  Background="#19DDDDDD" Foreground="#FFFF3333"
+                     IconKind="TrashCanOutline"  
+                     Command="{Binding DeleteFreBandCommand}"
+                    />
+            </Grid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#F0F8FF" Offset="0"/>
+                        <GradientStop Color="#FFC7F1FF" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <TextBlock Text="{DynamicResource StartFreqTitle}" FontSize="18" VerticalAlignment="Center" Margin="50,0,0,0"/>
+                <mah:NumericUpDown Background="{x:Null}" Width="160" Margin="20,10,0,10" 
+                               Value="{Binding StartFreq,Mode=TwoWay}" Foreground="Black"/>
+                <ComboBox ItemsSource="{Binding FreqUnits}" Text="{Binding StartFreqUnit,Mode=TwoWay}"
+                      Width="125" Margin="10,0,0,0"  FontSize="18" VerticalAlignment="Center" Height="38"/>
+                <TextBlock Text="{DynamicResource EndFreqTitle}" FontSize="18" VerticalAlignment="Center"
+                           Margin="20,10,0,10"/>
+                <mah:NumericUpDown Background="{x:Null}" Width="160" Margin="20,10,0,10" 
+                               Value="{Binding EndFreq,Mode=TwoWay}" Foreground="Black"/>
+                <ComboBox ItemsSource="{Binding FreqUnits}" Text="{Binding EndFreqUnit,Mode=TwoWay}"
+                      Width="125" VerticalAlignment="Center"  FontSize="18" Margin="10,0,0,0" Height="38"/>
+
+                <Controls:StatusIconTextButton Label="{DynamicResource EditBandTitle}" Margin="50,0,0,0" 
+                                           Background="#02F5F1F1" FontSize="18" VerticalAlignment="Center"
+                                           IconSize="40" IconKind="Cogs" Command="{Binding SaveFreBandCommand}"/>
+            </StackPanel>
+            <Viewbox Grid.Row="1" HorizontalAlignment="Center" Width="1100">
+                <Grid Cursor="Arrow" Width="1100" Height="337">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Margin="70,59,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                    Width="110" Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0" Cursor="Arrow">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/signalsource.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="324,56,0,0" Height="46" VerticalAlignment="Top" HorizontalAlignment="Left" 
+        Width="43" Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/switch.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="480,58,0,0" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                    Width="78" Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/Amplifier.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="665,63,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="52" 
+                    Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/switch.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="820,42,0,0" Height="85" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" 
+                    Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/antenna.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="960,56,0,0" Height="84" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102"
+                    Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0" RenderTransformOrigin="-0.363,0.571">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/probe.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="463,182,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="58" 
+                    Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0" RenderTransformOrigin="1.025,0.66">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/switch.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="515,182,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="56" 
+        Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/switch.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+
+                    <Button Margin="341,232,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="59" 
+                    Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0" RenderTransformOrigin="0.92,0.631">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/inputpower.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="614,232,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="59" 
+        Style="{DynamicResource NoHoverButtonStyle}" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/outputpower.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+                    <Controls:ArrowSeparator HorizontalAlignment="Left" Height="54" Margin="159,54,0,0" VerticalAlignment="Top"
+                                     Width="165" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+                                     BorderThickness="0,1,0,0"/>
+                    <Controls:ArrowSeparator HorizontalAlignment="Left" Height="21" Margin="368,72,0,0" VerticalAlignment="Top"
+                                     Width="106" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+                                     BorderThickness="0,1,0,0"/>
+                    <Controls:ArrowSeparator HorizontalAlignment="Left" Height="13" Margin="555,76,0,0" VerticalAlignment="Top" 
+                                     Width="103" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+                                     BorderThickness="0,1,0,0"/>
+                    <Controls:ArrowSeparator HorizontalAlignment="Left" Height="33" Margin="716,66,0,0" VerticalAlignment="Top"
+                                     Width="86" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD" 
+                                     BorderThickness="0,1,0,0"/>
+                    <Controls:ArrowSeparator HorizontalAlignment="Left" Height="10" Margin="503,139,0,0" VerticalAlignment="Top"
+                                     Width="76" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD"
+                                     BorderThickness="0,1,0,0" RenderTransformOrigin="0.5,0.5">
+                        <Controls:ArrowSeparator.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Controls:ArrowSeparator.RenderTransform>
+                    </Controls:ArrowSeparator>
+                    <Controls:ArrowSeparator HorizontalAlignment="Left" Height="3" Margin="455,142,0,0" VerticalAlignment="Top" 
+                                     Width="71" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD"
+                                     BorderThickness="0,1,0,0" RenderTransformOrigin="0.5,0.5">
+                        <Controls:ArrowSeparator.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Controls:ArrowSeparator.RenderTransform>
+                    </Controls:ArrowSeparator>
+                    <Controls:ArrowSeparator HorizontalAlignment="Left" Height="4" Margin="528,238,0,0" VerticalAlignment="Top"
+                                     Width="32" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD"
+                                     BorderThickness="0,1,0,0" RenderTransformOrigin="0.5,0.5" 
+                                     ShowEndArrow="False">
+                        <Controls:ArrowSeparator.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Controls:ArrowSeparator.RenderTransform>
+                    </Controls:ArrowSeparator>
+                    <Controls:ArrowSeparator HorizontalAlignment="Left" Height="8" Margin="479,236,0,0" VerticalAlignment="Top"
+                                     Width="28" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD"
+                                     BorderThickness="0,1,0,0" RenderTransformOrigin="0.5,0.5" 
+                                     ShowEndArrow="False">
+                        <Controls:ArrowSeparator.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Controls:ArrowSeparator.RenderTransform>
+                    </Controls:ArrowSeparator>
+                    <Controls:ArrowSeparator HorizontalAlignment="Left" Height="21" Margin="400,245,0,0" VerticalAlignment="Top" 
+                                     Width="92" Background="#FF31A2DD" BorderBrush="#FF31A2DD" BorderThickness="0,1,0,0" ShowEndArrow="False"/>
+                    <Controls:ArrowSeparator HorizontalAlignment="Left" Height="10" Margin="544,249,0,0" VerticalAlignment="Top"
+                                     Width="75" ShowStartArrow="False" Background="#FF31A2DD" BorderBrush="#FF31A2DD"
+                                     BorderThickness="0,1,0,0" RenderTransformOrigin="0.65,-2.124"/>
+                    <Controls:StatusIconTextButton Content="StatusIconTextButton" Margin="405,63,0,0" IconSize="30" 
+                                           Background="#02E6E4E4" IconKind="PlusCircle" Cursor="Hand" 
+                                           HorizontalContentAlignment="Left" VerticalAlignment="Top"
+                                           Command="{Binding FileInputCommand}" CommandParameter="A"
+                                           HorizontalAlignment="Left" Width="30" Height="38" Label="" RenderTransformOrigin="0.733,2.711"/>
+                    <Controls:StatusIconTextButton Content="StatusIconTextButton" Margin="475,143,0,0" IconSize="30" 
+                                           Background="#02E6E4E4" IconKind="PlusCircle" Cursor="Hand" 
+                                           HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                                            Command="{Binding FileInputCommand}" CommandParameter="F"
+                                           Width="29" Height="24" VerticalAlignment="Top" Label="" RenderTransformOrigin="0.5,0.5">
+                        <Controls:StatusIconTextButton.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-1.595"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Controls:StatusIconTextButton.RenderTransform>
+                    </Controls:StatusIconTextButton>
+                    <Controls:StatusIconTextButton Content="StatusIconTextButton" Margin="526,137,0,0" IconSize="30" 
+                                           Label="" Background="#02E6E4E4" IconKind="PlusCircle" 
+                                           HorizontalContentAlignment="Left" Cursor="Hand" 
+                                           Command="{Binding FileInputCommand}" CommandParameter="R"
+                                           HorizontalAlignment="Left" Width="30" Height="36" VerticalAlignment="Top"/>
+                    <TextBlock Height="31" Margin="77,109,0,0" TextAlignment="Center"
+                       Text="{DynamicResource DeviceTypeTitle_SignalSource}" VerticalAlignment="Top" 
+                       FontSize="20" HorizontalAlignment="Left" Width="93"/>
+                    <TextBlock Height="31" Margin="292,109,0,0" TextAlignment="Center" 
+                       Text="{DynamicResource DeviceTypeTitle_Switch}" VerticalAlignment="Top" 
+                       FontSize="20" HorizontalAlignment="Left" Width="108"/>
+                    <TextBlock Height="23" Margin="479,110,0,0" TextAlignment="Center"
+                       Text="{DynamicResource DeviceTypeTitle_Amplifier}" VerticalAlignment="Top"
+                       FontSize="20" HorizontalAlignment="Left" Width="72" RenderTransformOrigin="1.079,0.444"/>
+                    <TextBlock Height="31" Margin="775,0,0,0" TextAlignment="Center"
+                       Text="{DynamicResource DeviceTypeTitle_Antenna}" VerticalAlignment="Center" 
+                       FontSize="20" HorizontalAlignment="Left" Width="170"/>
+                    <TextBlock Height="31" Margin="950,165,0,0" TextAlignment="Center"
+                       Text="{DynamicResource DeviceTypeTitle_FieldProbe}" VerticalAlignment="Top" 
+                       FontSize="20" HorizontalAlignment="Left" Width="120"/>
+                    <TextBlock Height="31" Margin="291,276,0,0" TextAlignment="Center" FontSize="20"
+                       Text="{DynamicResource DeviceTypeTitle_ForwardDynamometer}" 
+                       VerticalAlignment="Top" HorizontalAlignment="Left" Width="139"/>
+                    <TextBlock Height="30" Margin="574,275,0,0" TextAlignment="Center" FontSize="20"
+                       Text="{DynamicResource DeviceTypeTitle_ReverseDynamometer}" 
+                       VerticalAlignment="Top" HorizontalAlignment="Left" Width="167"/>
+
+                    <ComboBox Height="31" Margin="36,10,0,0"  VerticalAlignment="Top"
+                Text="{Binding CurSubBandHardConfigItem.ListDeviceInfos[0].Name}" 
+                FontSize="18" HorizontalAlignment="Left" Width="180" Background="#FFC3F6F9"
+                              ItemsSource="{Binding SignalSourceNames}"
+                              />
+
+                    <ComboBox Height="31" Margin="449,10,0,0" VerticalAlignment="Top"
+                       Text="{Binding CurSubBandHardConfigItem.ListDeviceInfos[2].Name}" 
+                       FontSize="18" HorizontalAlignment="Left" Width="180" Background="#FFC3F6F9"
+                             ItemsSource="{Binding AmplifierNames}"/>
+                    <ComboBox Height="31" Margin="256,10,0,0"  VerticalAlignment="Top"
+           Text="{Binding CurSubBandHardConfigItem.ListDeviceInfos[1].Name}" 
+           FontSize="18" HorizontalAlignment="Left" Width="180" Background="#FFC3F6F9"
+                              ItemsSource="{Binding SwitchMatrixNames}"/>
+                    <ComboBox Height="31" Margin="910,9,0,0"  VerticalAlignment="Top"
+                Text="{Binding CurSubBandHardConfigItem.ListDeviceInfos[3].Name}" 
+                FontSize="18" HorizontalAlignment="Left" Width="180" Background="#FFC3F6F9"
+                              ItemsSource="{Binding FieldStrengthNames}"/>
+                    <ComboBox Height="30" Margin="252,196,0,0" VerticalAlignment="Top"
+                Text="{Binding CurSubBandHardConfigItem.ListDeviceInfos[4].Name}" 
+                FontSize="18" HorizontalAlignment="Left" Width="180" Background="#FFC3F6F9"
+                              ItemsSource="{Binding PowerMeterames}"/>
+                    <ComboBox Height="31" Margin="576,191,0,0" VerticalAlignment="Top"
+                Text="{Binding CurSubBandHardConfigItem.ListDeviceInfos[5].Name}" 
+                FontSize="18" HorizontalAlignment="Left" Width="180" Background="#FFC3F6F9"
+                              ItemsSource="{Binding PowerMeterames}"/>
+                    <ComboBox Height="24" Margin="313,136,0,0"  VerticalAlignment="Top"
+                        FontSize="18" HorizontalAlignment="Left" Width="66" Background="#ffffff"        
+                        ItemsSource="{Binding Switch1}"  SelectedIndex="{Binding CurSubBandHardConfigItem.K1CMD, TargetNullValue=0}"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="446,232,0,81" Width="66" Height="24" Background="#ffffff" FontSize="18"
+                              ItemsSource="{Binding Switch3}" SelectedIndex="{Binding CurSubBandHardConfigItem.K3CMD, TargetNullValue=0}"/>
+                    <TextBox  Text="{Binding CurSubBandHardConfigItem.LossDesToAMP}" Margin="825,231,14,82" Background="#ffffff" FontSize="18"/>
+                    <TextBox  Text="{Binding CurSubBandHardConfigItem.LossDesToFW}" Margin="823,269,13,44" Background="#ffffff" FontSize="18"/>
+                    <TextBox Text="{Binding CurSubBandHardConfigItem.LossDesToRW}" Margin="824,304,12,9" Background="#ffffff" FontSize="18"/>
+                </Grid>
+            </Viewbox>
+            <ComboBox Height="24" Margin="661,133,0,0"  VerticalAlignment="Top"
+                FontSize="18" HorizontalAlignment="Left" Width="66" Background="#ffffff"
+                ItemsSource="{Binding Switch2}"  Grid.Row="1" SelectedIndex="{Binding CurSubBandHardConfigItem.K2CMD,TargetNullValue=0}"/>
+            <ComboBox HorizontalAlignment="Left" Margin="524,256,0,104" Width="66" Grid.Row="1" 
+                      RenderTransformOrigin="1.628,2.29" Height="24" Background="#ffffff"
+                      ItemsSource="{Binding Switch4}" FontSize="18" SelectedIndex="{Binding CurSubBandHardConfigItem.K4CMD, TargetNullValue=0}"/>
+        </Grid>
+    </Viewbox>
+</Page>

@@ -1,0 +1,191 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!--#region 主页信息标题 -->
+    <system:String x:Key="MainTitle">Huakai Modular Testing Platform</system:String>
+    <system:String x:Key="PhoneTitle">Phone</system:String>
+    <system:String x:Key="EmailTitle">Email</system:String>
+    <system:String x:Key="VersionTitle">Version</system:String>
+    <system:String x:Key="HelpTitle">Help</system:String>
+    <!--#endregion-->
+
+    <!--#region 动态显示信息标题 -->
+    <system:String x:Key="VoltageTitle">Voltage</system:String>
+    <system:String x:Key="CurrentTitle">Current</system:String>
+    <system:String x:Key="TemperatureTitle">Temperature</system:String>
+    <system:String x:Key="PowerTestTitle">PowerTest</system:String>
+    <system:String x:Key="CoupleTestTitle">CoupleTest</system:String>
+    <system:String x:Key="HarmonicTestTitle">HarmonicTest</system:String>
+    <system:String x:Key="FrequencyTitle">Frequency</system:String>
+    <system:String x:Key="PowerTitle">Power</system:String>
+    <!--#endregion-->
+
+    <!--#region 设定参数信息标签 -->
+    <system:String x:Key="BandTitle">BAND</system:String>
+    <system:String x:Key="StartFreqTitle">Start frequency</system:String>
+    <system:String x:Key="EndFreqTitle">End frequency</system:String>
+    <system:String x:Key="FreqStepTitle">Frequency step</system:String>
+    <system:String x:Key="MeasureTime">Measure time</system:String>
+    <system:String x:Key="StepTypeTitle">Step type</system:String>
+    <system:String x:Key="StepModeTitle">Step mode</system:String>
+    <system:String x:Key="StepSizeTitle">Step size</system:String>
+    <system:String x:Key="RBWTitle">Distinguish bandwidth</system:String>
+    <system:String x:Key="VBWTitle">Video bandwidth</system:String>
+    <system:String x:Key="TestMethodTitle">Test method</system:String>
+    <system:String x:Key="InputPortTitle">Input port</system:String>
+    <system:String x:Key="ReferenceAmplitudeTitle">Reference amplitude</system:String>
+    <system:String x:Key="PreAmplifierTitle">Pre-Amplifier</system:String>
+    <system:String x:Key="TrackRefreshTitle">Track refresh</system:String>
+    <system:String x:Key="BuiltInAttenuation">Built-in att</system:String>
+    <system:String x:Key="CouplingMethod">Coupling method</system:String>
+    <system:String x:Key="BottomNoiseExpanTitle">Bottom noise expan</system:String>
+    <system:String x:Key="PreSelectorTitle">Pre-Selector</system:String>
+    <system:String x:Key="UseTDSTitle">Use TDS</system:String>
+    <system:String x:Key="FallDelayTitle">Fall delay</system:String>
+    <system:String x:Key="SamplingTimeTitle">Sampling time</system:String>
+    <system:String x:Key="CalibrationFactorTitle">Calibration factor</system:String>
+    <system:String x:Key="MaxAttTitle">Max attenuation</system:String>
+    <system:String x:Key="AttStepTitle">Attenuation step</system:String>
+    <system:String x:Key="BaseTitle">Benchmark setting</system:String>
+    <system:String x:Key="AddressShowTitle">Address</system:String>
+    <system:String x:Key="TimePeriodTitle">Time period</system:String>
+    <system:String x:Key="RatedPowerTitle">Rated power</system:String>
+    <system:String x:Key="MaxInputValueTitle">Max input value</system:String>
+    <system:String x:Key="ReverseCouplingTitle">Reverse coupling</system:String>
+    <system:String x:Key="ForWardCouplingTitle">ForWard coupling</system:String>
+    <system:String x:Key="SWPStartPowerTitle">Standing wave protection init power</system:String>
+    <system:String x:Key="SetSignalTitle">Set signal</system:String>
+    <system:String x:Key="PulseModulationTitle">Pulse modulation</system:String>
+    <system:String x:Key="ModulationEnableTitle">Modulation enable</system:String>
+    <system:String x:Key="SingalOutputTitle">Singal output</system:String>
+    <system:String x:Key="TestTypeTitle">Test type</system:String>
+    <system:String x:Key="TestModeTitle">Test mode</system:String>
+    <system:String x:Key="UnitSettingTitle">Unit setting</system:String>
+    <system:String x:Key="limitValueTitle">Limit value</system:String>
+    <system:String x:Key="FrequencyDisplayTitle">Frequency display</system:String>
+    <system:String x:Key="HardwareConfigTitle">Hardware config</system:String>
+    <system:String x:Key="LimitValueTableTitle">Limit value table</system:String>
+    <system:String x:Key="MaxPowerTitle">Max power</system:String>
+    <system:String x:Key="SWRTitle">SWR</system:String>
+    <system:String x:Key="DwellTimeTitle">Dwell time</system:String>
+    <system:String x:Key="UpperLimitTitle">Upper limit</system:String>
+    <system:String x:Key="LowerLimitTitle">Lower limit</system:String>
+    <system:String x:Key="PulseWidthTitle">Pulse width</system:String>
+    <system:String x:Key="PeriodTitle">Period</system:String>
+    <system:String x:Key="TestModelTitle">Test model</system:String>
+    <system:String x:Key="StepAngleTitle">Step Angle</system:String>
+    <system:String x:Key="MinAngleTitle">Minimum Angle</system:String>
+    <system:String x:Key="MaxAngleTitle">Maximum Angle</system:String>
+    <system:String x:Key="RotateAngleTitle">Rotation Angle</system:String>
+    <!--#endregion-->
+
+    <!--#region 标签信息标题 -->
+    <system:String x:Key="SeletcTestTitle">Select Tests</system:String>
+    <system:String x:Key="MonitoringSettingTitle">Monitoring setting</system:String>
+    <system:String x:Key="PowerUnitTitle">Power unit</system:String>
+    <system:String x:Key="CymoscopeTitle">Cymoscope</system:String>
+    <system:String x:Key="DetectorParametersTitle">Cymoscope parameters</system:String>
+    <system:String x:Key="OtherParametersTitle">Other parameters</system:String>
+    <system:String x:Key="BasicParametersTitle">Basic parameters</system:String>
+    <system:String x:Key="SetParaTitle">Parameter settings</system:String>
+    <system:String x:Key="ConfigureTitle">Configuration</system:String>
+    <system:String x:Key="GeneralConfigureTitle">General configure</system:String>
+    <system:String x:Key="FrequencyConfigureTitle">Frequency configure</system:String>
+    <system:String x:Key="TestTitle">Test</system:String>
+    <system:String x:Key="LogTitle">LOG</system:String>
+    <system:String x:Key="VerifyTitle">Identity verification</system:String>
+    <system:String x:Key="ProtocolTypeTitle">Protocol type</system:String>
+    <system:String x:Key="CommunicationTimeTitle">Communication time</system:String>
+    <system:String x:Key="CommunicationInterfaceTitle">Communication interface</system:String>
+    <system:String x:Key="AlarmStatusTitle">Alarm status</system:String>
+    <system:String x:Key="InitialLevelLimitTitle">Refer level set</system:String>
+    <system:String x:Key="ImmunityLevelTitle">Immunity level</system:String>
+    <system:String x:Key="AmplitudeTitle">Amplitude</system:String>
+    <system:String x:Key="SignalSoucePWMTitle">Signal source pulse modulation parameters</system:String>
+    <system:String x:Key="MilitaryFieldTitle">Military field</system:String>
+    <system:String x:Key="CivilianFieldTitle">Civilian field</system:String>
+    <system:String x:Key="SinpelTestTitle">Sinpel TestField</system:String>
+    <system:String x:Key="RunInterfaceTitle">Runtime interface</system:String>
+    <system:String x:Key="ResultInterfaceTitle">Result interface</system:String>
+    <system:String x:Key="TestLogTitle">Test log</system:String>
+    <system:String x:Key="ParameterTitle">Parameter</system:String>
+    <system:String x:Key="ValueTitle">Value</system:String>
+    <system:String x:Key="UserNameTitle">UserName</system:String>
+    <system:String x:Key="PasswordTitle">Password</system:String>
+    <system:String x:Key="UserLoginTitle">User login</system:String>
+    <system:String x:Key="RegisterTitle">Register</system:String>
+    <!--快速测试界面 -->
+    <system:String x:Key="EMC_RS_ElectricField">Radiated Susceptibility - Electric Field(RS)</system:String>
+    <system:String x:Key="EMC_RS_MagneticField">Radiated Susceptibility - Magnetic Field</system:String>
+    <system:String x:Key="EMC_RE_ElectricField">Radiated Emission(RE)</system:String>
+    <system:String x:Key="EMC_CE_ConductedEmission">Conducted Emission(CE)</system:String>
+    <system:String x:Key="EMC_CS_ConductedSusceptibility">Conducted Susceptibility(CS)</system:String>
+    <!--#endregion-->
+
+    <!--#region 操作控件显示标题 -->
+    <system:String x:Key="FullFrequencyTitle">Full frequency</system:String>
+    <system:String x:Key="FrequencyDivisionTitle">Frequency division</system:String>
+    <system:String x:Key="FixedValueTitle">Fixed value</system:String>
+    <system:String x:Key="FileImportTitle">File import</system:String>
+    <system:String x:Key="SwitchLanguageTitle">Language</system:String>
+    <system:String x:Key="SaveTitle">Save</system:String>
+    <system:String x:Key="DataAnalysisTitle">DataAnalysis</system:String>
+
+    <system:String x:Key="RestoreTitle">Restore</system:String>
+    <system:String x:Key="ExitTitle">Exit</system:String>
+    <system:String x:Key="SaveAsTitle">SaveAs</system:String>
+    <system:String x:Key="DataImportTitle">Data inport</system:String>
+    <system:String x:Key="AddTitle">Add</system:String>
+    <system:String x:Key="EditBandTitle">EditFrequencyBand</system:String>
+    <system:String x:Key="EditTitle">Edit</system:String>
+    <system:String x:Key="RenameTitle">Rename</system:String>
+    <system:String x:Key="CopyTitle">Copy</system:String>
+    <system:String x:Key="DelTitle">Del</system:String>
+    <system:String x:Key="ConfirmTitle">Confirm</system:String>
+    <system:String x:Key="CencelTitle">Cencel</system:String>
+    <system:String x:Key="ReConnectTitle">ReConnect</system:String>
+    <system:String x:Key="ConnectTitle">Connect</system:String>
+    <system:String x:Key="DisConnectTitle">disConnect</system:String>
+    <system:String x:Key="SendTitle">Send</system:String>
+    <system:String x:Key="ReadTitle">Read</system:String>
+    <system:String x:Key="OpenTitle">Open</system:String>
+    <system:String x:Key="CloseTitle">Close</system:String>
+    <system:String x:Key="StartTestTitle">Start Test</system:String>
+    <system:String x:Key="StopTestTitle">Stop Test</system:String>
+    <system:String x:Key="PauseTestTitle">Pause Test</system:String>
+    <system:String x:Key="ContinueTestTitle">Continue Test</system:String>
+    <system:String x:Key="LoginTitle">Login</system:String>
+    <system:String x:Key="SaveConfigTitle">SaveConfig</system:String>
+    <system:String x:Key="SaveASConfigTitle">SaveASConfig</system:String>
+    <!--#endregion-->
+
+    <!--#region 设备类型名称显示标题 -->
+    <system:String x:Key="DeviceTypeTitle_SignalSource">Signal source</system:String>
+    <system:String x:Key="DeviceTypeTitle_Amplifier">Amplifier</system:String>
+    <system:String x:Key="DeviceTypeTitle_Receiver">Receiver</system:String>
+    <system:String x:Key="DeviceTypeTitle_FieldStrengthMeter">Field strength Meter</system:String>
+    <system:String x:Key="DeviceTypeTitle_PowerMeter">Power meter</system:String>
+    <system:String x:Key="DeviceTypeTitle_PhaseAttenuator">Phase attenuator</system:String>
+    <system:String x:Key="DeviceTypeTitle_MultiplierFreq">Multiplier frequency</system:String>
+    <system:String x:Key="DeviceTypeTitle_SwitchMatrix">Switch matrix</system:String>
+    <system:String x:Key="DeviceTypeTitle_Switch">Switch</system:String>
+    <system:String x:Key="DeviceTypeTitle_Oscilloscope">Oscilloscope</system:String>
+    <system:String x:Key="DeviceTypeTitle_Spectrumanalyzer">Spectrumanalyzer</system:String>
+    <system:String x:Key="DeviceTypeTitle_Antenna">Antenna</system:String>
+    <system:String x:Key="DeviceTypeTitle_Stirrer">Stirrer</system:String>
+    <system:String x:Key="DeviceTypeTitle_AntennaTower">AntennaTower</system:String>
+    <system:String x:Key="DeviceTypeTitle_FieldProbe">Field probe</system:String>
+    <system:String x:Key="DeviceTypeTitle_ForwardDynamometer">Forward dynamometer</system:String>
+    <system:String x:Key="DeviceTypeTitle_ReverseDynamometer">Reverse dynamometer</system:String>
+    <system:String x:Key="DeviceTypeTitle_Dynamometer">Power probe</system:String>
+    <system:String x:Key="DeviceTypeTitle_NetworkAnalysis">NetworkAnalysis</system:String>
+    <!--#endregion-->
+    
+    <!--#region 提示消息 -->
+    <system:String x:Key="MaxPowerpromptMsg">Icon vertical axis display range upper limit Suggest setting it to 4 times the total power of the system</system:String>
+    <system:String x:Key="SWRPromptMsg">The reference value for values above 1G is 3, and the reference value for values below 1G is 6</system:String>
+    <system:String x:Key="RegisterNewAccountMsg">Register a new account</system:String>
+    <!--#endregion-->
+    <system:String x:Key="HelpFileName">HelpDocument_en</system:String>
+</ResourceDictionary>

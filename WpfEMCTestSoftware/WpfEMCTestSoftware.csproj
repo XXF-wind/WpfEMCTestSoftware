@@ -1,0 +1,196 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <StartupObject></StartupObject>
+    <Company>sinpel</Company>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="FakesAssemblies\**" />
+    <Compile Remove="Views\windows\**" />
+    <EmbeddedResource Remove="FakesAssemblies\**" />
+    <EmbeddedResource Remove="Views\windows\**" />
+    <None Remove="FakesAssemblies\**" />
+    <None Remove="Views\windows\**" />
+    <Page Remove="FakesAssemblies\**" />
+    <Page Remove="Views\windows\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Amplifier.png" />
+    <None Remove="Images\antenna.png" />
+    <None Remove="Images\antennaEmitter.png" />
+    <None Remove="Images\antennaReceiver.png" />
+    <None Remove="Images\attenuator.png" />
+    <None Remove="Images\CS103.png" />
+    <None Remove="Images\CS114.png" />
+    <None Remove="Images\CS114_CDN.png" />
+    <None Remove="Images\CS114_EUT.png" />
+    <None Remove="Images\CS114_InjectProbe.png" />
+    <None Remove="Images\CS114_MonitorProbe.png" />
+    <None Remove="Images\CS115.png" />
+    <None Remove="Images\CS116.png" />
+    <None Remove="Images\inductor.png" />
+    <None Remove="Images\JS21RC.png" />
+    <None Remove="Images\JS22.png" />
+    <None Remove="Images\JS32-ME.png" />
+    <None Remove="Images\JS32-VC.png" />
+    <None Remove="Images\JS32CE.png" />
+    <None Remove="Images\JS32RE.png" />
+    <None Remove="Images\JS35EFT.png" />
+    <None Remove="Images\JS35PI.png" />
+    <None Remove="Images\JS36.png" />
+    <None Remove="Images\LCR.png" />
+    <None Remove="Images\lisn.png" />
+    <None Remove="Images\oscilloscope.png" />
+    <None Remove="Images\probe.png" />
+    <None Remove="Images\receiver.png" />
+    <None Remove="Images\RS101.png" />
+    <None Remove="Images\RS103.png" />
+    <None Remove="Images\switch.png" />
+    <None Remove="Images\Thumbs.db" />
+    <None Remove="Images\transformer.png" />
+    <None Remove="Images\transorHorizontal.png" />
+    <None Remove="Images\transorVertical.png" />
+    <None Remove="Images\信号源.png" />
+    <None Remove="Images\倍频器.png" />
+    <None Remove="Images\功放.png" />
+    <None Remove="Images\功率计.png" />
+    <None Remove="Images\场强仪.png" />
+    <None Remove="Images\天线端口.png" />
+    <None Remove="Images\开关矩阵.png" />
+    <None Remove="Images\接收机.png" />
+    <None Remove="Images\提示框.png" />
+    <None Remove="Images\混响室.png" />
+    <None Remove="Images\潜艇.png" />
+    <None Remove="Images\登录页.png" />
+    <None Remove="Images\示波器.png" />
+    <None Remove="Images\衰减器.png" />
+    <None Remove="Images\飞机.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Resources\en-US.xaml" />
+    <Page Remove="Resources\zh-CN.xaml" />
+    <Page Remove="Views\PageViews\RunConfigPage - 副本.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Dirkster.AvalonDock" Version="4.74.1" />
+    <PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="4.74.1" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.3.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="Microsoft.QualityTools.Testing.Fakes" Version="17.5.0-beta.23060.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Amplifier.png" />
+    <Resource Include="Images\antenna.png" />
+    <Resource Include="Images\antennaEmitter.png" />
+    <Resource Include="Images\antennaReceiver.png" />
+    <Resource Include="Images\attenuator.png" />
+    <Resource Include="Images\CS103.png" />
+    <Resource Include="Images\CS114.png" />
+    <Resource Include="Images\CS114_CDN.png" />
+    <Resource Include="Images\CS114_EUT.png" />
+    <Resource Include="Images\CS114_InjectProbe.png" />
+    <Resource Include="Images\CS114_MonitorProbe.png" />
+    <Resource Include="Images\CS115.png" />
+    <Resource Include="Images\CS116.png" />
+    <Resource Include="Images\fieldstrengthmeter.png" />
+    <Resource Include="Images\frequencymultiplier.png" />
+    <Resource Include="Images\inductor.png" />
+    <Resource Include="Images\inputpower.png" />
+    <Resource Include="Images\JS21RC.png" />
+    <Resource Include="Images\JS22.png" />
+    <Resource Include="Images\JS32-ME.png" />
+    <Resource Include="Images\JS32-VC.png" />
+    <Resource Include="Images\JS32CE.png" />
+    <Resource Include="Images\JS32RE.png" />
+    <Resource Include="Images\JS35EFT.png" />
+    <Resource Include="Images\JS35PI.png" />
+    <Resource Include="Images\JS36.png" />
+    <Resource Include="Images\LCR.png" />
+    <Resource Include="Images\lisn.png" />
+    <Resource Include="Images\oscilloscope.png" />
+    <Resource Include="Images\outputpower.png" />
+    <Resource Include="Images\pentypeprobe.png" />
+    <Resource Include="Images\probe.png" />
+    <Resource Include="Images\receiver.png" />
+    <Resource Include="Images\RS101.png" />
+    <Resource Include="Images\RS103.png" />
+    <Resource Include="Images\signalsource.png" />
+    <Resource Include="Images\switch.png" />
+    <Resource Include="Images\Thumbs.db" />
+    <Resource Include="Images\transformer.png" />
+    <Resource Include="Images\transorHorizontal.png" />
+    <Resource Include="Images\transorVertical.png" />
+    <Resource Include="Images\信号源.png" />
+    <Resource Include="Images\倍频器.png" />
+    <Resource Include="Images\功放.png" />
+    <Resource Include="Images\功率计.png" />
+    <Resource Include="Images\场强仪.png" />
+    <Resource Include="Images\天线端口.png" />
+    <Resource Include="Images\开关矩阵.png" />
+    <Resource Include="Images\接收机.png" />
+    <Resource Include="Images\提示框.png" />
+    <Resource Include="Images\混响室.png" />
+    <Resource Include="Images\潜艇.png" />
+    <Resource Include="Images\登录页.png" />
+    <Resource Include="Images\示波器.png" />
+    <Resource Include="Images\衰减器.png" />
+    <Resource Include="Images\飞机.png" />
+    <Resource Include="Resources\en-US.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\zh-CN.xaml">
+      <Generator></Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\PageViews\DeviceViews\SignalSourceTestPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\PageViews\SupportToolPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\PageViews\SupportToolsViews\PhaseTestPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\PageViews\TestConfigViews\TestConfigPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalDesignTimeBuildInput Remove="FakesAssemblies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\PageViewModels\RunConfigViewModel - 副本.cs" />
+    <Compile Remove="Views\PageViews\RunConfigPage.xaml - 副本.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\公共库\ClassLibrary\ClassLibrary\ClassLibrary.csproj" />
+    <ProjectReference Include="..\..\公共库\ClassLibrary\Company.UI.Controls\Company.UI.Controls.csproj" />
+    <ProjectReference Include="..\..\公共库\ClassLibrary\FileHelperLibrary\FileHelperLibrary.csproj" />
+    <ProjectReference Include="..\EMCDeviceLibrary\EMCDeviceLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Equipment">
+      <HintPath>..\EMCDeviceLibrary\bin\Release\net8.0-windows\Equipment.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

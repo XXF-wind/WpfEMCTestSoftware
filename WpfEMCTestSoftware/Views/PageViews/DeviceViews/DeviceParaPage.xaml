@@ -1,0 +1,137 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfEMCTestSoftware.Views" 
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" 
+      xmlns:viewmodels="clr-namespace:WpfEMCTestSoftware.ViewModels" 
+      xmlns:UseControls="clr-namespace:Company.UI.Controls.UseControls;assembly=Company.UI.Controls" 
+      xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls" 
+      x:Class="WpfEMCTestSoftware.Views.DeviceParaPage" 
+      DataContext="{Binding DeviceParaViewModel, Source={StaticResource Locator}}"
+      mc:Ignorable="d" FontSize="24"
+      d:DesignHeight="910" d:DesignWidth="1840"
+      Title="DeviceParaPage"
+      TextElement.Foreground="{DynamicResource TextPrimaryBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="421*"/>
+            <RowDefinition Height="34*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="613*"/>
+            <ColumnDefinition Width="698*"/>
+            <ColumnDefinition Width="529*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="20,0,10,0">
+            <GroupBox Header="{DynamicResource CommunicationInterfaceTitle}" FontSize="30"
+                      Foreground="{DynamicResource TextPrimaryBrush}">
+                <Grid>
+                    <Grid Height="268" VerticalAlignment="Top" Margin="0,239,-1,0" 
+                        Visibility="{Binding ModeEnableds[3], Converter={StaticResource myBoolToVisibilityConverter}}">
+                        <TextBlock Text="Address：" FontSize="36" FontWeight="Bold" Margin="0,40,0,0" Height="48"
+                            VerticalAlignment="Top" HorizontalAlignment="Left" Width="176"/>
+                        <TextBox Height="63" Margin="5,120,5,0" TextWrapping="Wrap" VerticalAlignment="Top" 
+                                 Text="{Binding DeviceInfo.DevicePara.Address}" VerticalContentAlignment="Center"
+                                 Background="{DynamicResource InputBackgroundBrush}"
+                                 Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    </Grid>
+                    <Grid Height="268" VerticalAlignment="Top" Margin="0,246,0,0" 
+                          Visibility="{Binding ModeEnableds[0], Converter={StaticResource myBoolToVisibilityConverter}}">
+                        <TextBlock Text="IP：" FontSize="36" FontWeight="Bold" Margin="52,36,0,0" Height="48"
+                                   VerticalAlignment="Top" HorizontalAlignment="Left" Width="70"/>
+                        <TextBlock Text="Port：" FontSize="36" FontWeight="Bold" Height="48" Margin="10,167,0,0" 
+                                   HorizontalAlignment="Left" Width="106" VerticalAlignment="Top"/>
+                        <UseControls:IPTextBox Margin="124,24,0,0" Text="{Binding DeviceInfo.DevicePara.IP, Mode=TwoWay}"
+                                               FontSize="12" Height="72" VerticalAlignment="Top" 
+                                               HorizontalAlignment="Left" Width="426"/>
+                        <mah:NumericUpDown x:Name="numPort" Margin="124,157,0,0" Foreground="{DynamicResource TextPrimaryBrush}" Height="68" 
+                                           FontFamily="DengXian" Maximum="999999" Minimum="0" FontSize="36" Interval="1" 
+                                           Value="{Binding DeviceInfo.DevicePara.Port, Mode=TwoWay}" TextAlignment="Center" 
+                                           DecimalPointCorrection="Number" Style="{DynamicResource NoButton}" 
+                                           Cursor="Arrow" HorizontalAlignment="Left" Width="213" VerticalAlignment="Top"
+                                           Background="{x:Null}" HorizontalContentAlignment="Center"/>
+                    </Grid>
+                    <Grid Height="268" VerticalAlignment="Top" Margin="0,246,0,0" 
+                        Visibility="{Binding ModeEnableds[1], Converter={StaticResource myBoolToVisibilityConverter}}">
+                        <TextBlock Text="COM：" FontSize="36" FontWeight="Bold" Margin="10,36,0,0" Height="48"
+                            VerticalAlignment="Top" HorizontalAlignment="Left" Width="112"/>
+                        <TextBlock Text="Baud：" FontSize="36" FontWeight="Bold" Height="48" Margin="10,167,0,0" 
+                            HorizontalAlignment="Left" Width="106" VerticalAlignment="Top"/>
+                        <ComboBox HorizontalAlignment="Left" Height="57" Margin="131,36,0,0" VerticalAlignment="Top"
+                                  Width="300" ItemsSource="{Binding ComPorts}" SelectedValue="{Binding DeviceInfo.DevicePara.ComPort}"
+                                  Foreground="{DynamicResource TextPrimaryBrush}"/>
+                        <ComboBox HorizontalAlignment="Left" Height="58" Margin="131,162,0,0" VerticalAlignment="Top"
+                                  Width="300" ItemsSource="{Binding BaudRates}" SelectedValue="{Binding DeviceInfo.DevicePara.ComBaud}"
+                                  Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    </Grid>
+                    <Grid Height="268" VerticalAlignment="Top" Margin="0,242,0,0" 
+                        Visibility="{Binding ModeEnableds[2], Converter={StaticResource myBoolToVisibilityConverter}}">
+                        <TextBlock Text="Channel：" FontSize="36" FontWeight="Bold" Margin="37,40,0,0" Height="48"
+                            VerticalAlignment="Top" HorizontalAlignment="Left" Width="176"/>
+                        <TextBlock Text="CANBaud：" FontSize="36" FontWeight="Bold" Height="48" Margin="10,167,0,0" 
+                            HorizontalAlignment="Left" Width="201" VerticalAlignment="Top"/>
+                        <mah:NumericUpDown HorizontalAlignment="Left" Height="56" Margin="220,36,0,0" 
+                                           TextAlignment="Center" VerticalAlignment="Top" Width="282" 
+                                           Style="{DynamicResource NoButton}" Value="{Binding DeviceInfo.DevicePara.CANChannel}" 
+                                           Background="{x:Null}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                        <ComboBox HorizontalAlignment="Left" Height="58" Margin="220,162,0,0" VerticalAlignment="Top"
+                                  Width="282" ItemsSource="{Binding CANBauds}" 
+                                  SelectedValue="{Binding DeviceInfo.DevicePara.CANBaudRate}"
+                                  Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    </Grid>
+                    <TextBlock Text="{DynamicResource ProtocolTypeTitle}" FontSize="36" FontWeight="Bold" 
+                               Margin="10,18,0,0" Height="48" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{DynamicResource CommunicationTimeTitle}" FontSize="36" FontWeight="Bold" Height="48"
+                               Margin="10,556,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                               TextAlignment="Right"/>
+                    <mah:NumericUpDown x:Name="numTime" Margin="124,631,0,0" Foreground="{DynamicResource TextPrimaryBrush}" Height="68" 
+                                       FontFamily="DengXian" Maximum="9999" Minimum="0" FontSize="36" Interval="1" 
+                                       Value="{Binding DeviceInfo.Time, Mode=TwoWay}" TextAlignment="Center"
+                                       DecimalPointCorrection="Number" HorizontalAlignment="Left" Width="128" 
+                                       VerticalAlignment="Top" Background="{x:Null}"/>
+                    <TextBlock FontSize="36" FontWeight="Bold" Height="48" Margin="277,641,0,0" Text="ms" 
+                               HorizontalAlignment="Left" Width="70" VerticalAlignment="Top"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                    <RadioButton Content="{Binding CommunicationModes[0]}" HorizontalAlignment="Left" Height="42"
+                                 Margin="50,96,0,0" VerticalAlignment="Top" Cursor="Hand" GroupName="CommMode"
+                                 IsChecked="{Binding ModeEnableds[0], Mode=OneWay}"
+                                 Command="{Binding SelectCommunicationModeCommand}" CommandParameter="0"
+                                 Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <RadioButton Content="{Binding CommunicationModes[1]}" HorizontalAlignment="Left" Height="42"
+                                 Margin="323,96,0,0" VerticalAlignment="Top" Cursor="Hand" GroupName="CommMode"
+                                 IsChecked="{Binding ModeEnableds[1], Mode=OneWay}"
+                                 Command="{Binding SelectCommunicationModeCommand}" CommandParameter="1"
+                                 Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <RadioButton Content="{Binding CommunicationModes[2]}" HorizontalAlignment="Left" Height="42"
+                                 Margin="50,166,0,0" VerticalAlignment="Top" Cursor="Hand" GroupName="CommMode"
+                                 IsChecked="{Binding ModeEnableds[2], Mode=OneWay}"
+                                 Command="{Binding SelectCommunicationModeCommand}" CommandParameter="2"
+                                 Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <RadioButton Content="{Binding CommunicationModes[3]}" HorizontalAlignment="Left" Height="42"
+                                 Margin="323,166,0,0" VerticalAlignment="Top" Cursor="Hand" GroupName="CommMode"
+                                 IsChecked="{Binding ModeEnableds[3], Mode=OneWay}"
+                                 Command="{Binding SelectCommunicationModeCommand}" CommandParameter="3"
+                                 Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <RadioButton Content="{Binding CommunicationModes[4]}" HorizontalAlignment="Left" Height="42"
+                                 Margin="323,26,0,0" VerticalAlignment="Top" Cursor="Hand" GroupName="CommMode"
+                                 IsChecked="{Binding ModeEnableds[4], Mode=OneWay}"
+                                 Command="{Binding SelectCommunicationModeCommand}" CommandParameter="4"
+                                 Foreground="{DynamicResource TextPrimaryBrush}"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <Button Content="{DynamicResource ConfirmTitle}" HorizontalAlignment="Left" Height="46" Margin="50,0,0,0"
+                Grid.Row="1" VerticalAlignment="Center" Width="148" Command="{Binding ConfirmCommand}"/>
+        <Button Content="{DynamicResource CencelTitle}" HorizontalAlignment="Left" Height="46" Margin="307,0,0,0"
+                Grid.Row="1" VerticalAlignment="Center" Width="148" Command="{Binding CencelCommand}"/>
+        <GroupBox Header="{DynamicResource ConfigureTitle}" FontSize="30" Grid.Column="1" Grid.RowSpan="2"
+                  Foreground="{DynamicResource TextPrimaryBrush}">
+            <Frame Content="{Binding ParaPage}" NavigationUIVisibility="Hidden" Margin="0,0,0,0"/>
+        </GroupBox>
+        <Frame Content="{Binding TestPage}" NavigationUIVisibility="Hidden" Grid.Column="2" Grid.RowSpan="2"/>
+        <GridSplitter Grid.Column="2" HorizontalAlignment="Left" Height="910" VerticalAlignment="Top" Width="7"
+                      Grid.RowSpan="2" Background="{DynamicResource BorderStrongBrush}"/>
+    </Grid>
+</Page>

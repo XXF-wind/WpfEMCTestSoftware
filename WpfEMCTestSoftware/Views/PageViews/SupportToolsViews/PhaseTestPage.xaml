@@ -1,0 +1,744 @@
+<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+    xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls"
+    x:Class="WpfEMCTestSoftware.Views.PhaseTestPage"
+    DataContext="{Binding PhaseTestViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d" FontSize="16"
+    d:DesignHeight="893" d:DesignWidth="1840"
+    Title="PhaseTestPage">
+
+    <Page.Resources>
+        <!-- 通道选择按钮：选中 = 主题强调色 -->
+        <Style x:Key="ChannelButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="92"/>
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="Margin" Value="6,0,6,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" CornerRadius="10" BorderThickness="2" Background="{DynamicResource SurfaceAltBrush}"
+                                BorderBrush="{DynamicResource BorderStrongBrush}">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <md:PackIcon x:Name="Ico" Kind="VectorSquare" Width="18" Height="18" Margin="0,0,0,2"
+                                             Foreground="{DynamicResource TextSecondaryBrush}"/>
+                                <TextBlock x:Name="Txt" Text="{Binding ChannelLabel}" FontSize="14" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextSecondaryBrush}" FontFamily="Microsoft YaHei"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+                                <Setter TargetName="Ico" Property="Foreground" Value="{DynamicResource TextOnAccentBrush}"/>
+                                <Setter TargetName="Txt" Property="Foreground" Value="{DynamicResource TextOnAccentBrush}"/>
+                            </DataTrigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.82"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 自动测试范围筛选按钮（开关/通道多选）：选中 = 主题强调色 -->
+        <Style x:Key="FilterButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="44"/>
+            <Setter Property="Margin" Value="4,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" CornerRadius="10" BorderThickness="2" Background="{DynamicResource SurfaceAltBrush}"
+                                BorderBrush="{DynamicResource BorderStrongBrush}">
+                            <TextBlock x:Name="Txt" Text="{Binding Label}" FontSize="14" FontWeight="SemiBold"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="{DynamicResource TextSecondaryBrush}" FontFamily="Microsoft YaHei"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+                                <Setter TargetName="Txt" Property="Foreground" Value="{DynamicResource TextOnAccentBrush}"/>
+                            </DataTrigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.82"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 通用主按钮 -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource ButtonPrimaryBgBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ButtonPrimaryFgBrush}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" CornerRadius="10" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.88"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.72"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 次级按钮 -->
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource ButtonSecondaryBgBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ButtonSecondaryFgBrush}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" CornerRadius="10" Background="{TemplateBinding Background}"
+                                BorderBrush="{DynamicResource BorderStrongBrush}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.85"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 模式切换按钮（RadioButton 外观） -->
+        <Style x:Key="ModeRadioStyle" TargetType="RadioButton">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="Bd" CornerRadius="10" Background="Transparent" Padding="22,8"
+                                BorderBrush="Transparent" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AccentLightBrush}"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{DynamicResource PageBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ═══════════════ 顶部：标题 + 设备连接 ═══════════════ -->
+        <Grid Margin="28,20,28,0">
+            <StackPanel>
+                <TextBlock Text="开关相位测试" FontSize="30" FontWeight="Bold"
+                           Foreground="{DynamicResource TextPrimaryBrush}" FontFamily="Microsoft YaHei"/>
+                <TextBlock Text="手动选择 4×6 开关矩阵通道并读取相位，或自动循环遍历所选开关与通道" FontSize="14"
+                           Foreground="{DynamicResource TextSecondaryBrush}" FontFamily="Microsoft YaHei" Margin="0,6,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Border Background="{DynamicResource AccentLightBrush}" CornerRadius="10" Padding="12,7" Margin="0,0,12,0" Width="248">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="Sitemap" Width="18" Height="18" Foreground="{DynamicResource AccentBrush}" Margin="0,0,6,0"/>
+                        <TextBlock Text="开关矩阵" FontSize="13" Foreground="{DynamicResource AccentBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                        <ComboBox Background="{DynamicResource AccentLightBrush}" 
+                                  Foreground="{DynamicResource AccentBrush}" 
+                                  BorderBrush="{DynamicResource AccentLightBrush}"
+                                  Width="146" 
+                                  SelectedItem="{Binding SwitchMatrixName}"
+                                  ItemsSource="{Binding SwitchMatrixNames}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SwitchMatrixChangeCommand}"
+                               PassEventArgsToCommand="True" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </StackPanel>
+                </Border>
+                <Button Height="40" MinWidth="170" Margin="0,0,12,0" Style="{StaticResource SecondaryButtonStyle}"
+                        Command="{Binding ConnectSwitchCommand}" Content="{Binding SwitchConnectBtnText}"/>
+                <Border Background="{DynamicResource AccentLightBrush}" CornerRadius="10" Padding="12,7" Margin="0,0,12,0">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="TuneVertical" Width="18" Height="18" Foreground="{DynamicResource AccentBrush}" Margin="0,0,6,0"/>
+                        <TextBlock Text="矢量网络分析仪" FontSize="13" Foreground="{DynamicResource AccentBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                        <ComboBox Background="{DynamicResource AccentLightBrush}" 
+                         Foreground="{DynamicResource AccentBrush}" 
+                         BorderBrush="{DynamicResource AccentLightBrush}"
+                         ItemsSource="{Binding NetworkAnalysisNames}"
+                         SelectedItem="{Binding NetworkName}"
+                         Width="146">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding NetworkChangeCommand}"
+                                    PassEventArgsToCommand="True" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </StackPanel>
+                </Border>
+                <Button Height="40" MinWidth="170" Style="{StaticResource SecondaryButtonStyle}"
+                        Command="{Binding ConnectVNACommand}" Content="{Binding VnaConnectBtnText}"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- ═══════════════ 模式切换 ═══════════════ -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="28,18,0,0">
+            <RadioButton Content="手动控制" Style="{StaticResource ModeRadioStyle}" GroupName="PhaseTestMode"
+                         IsChecked="{Binding IsManualMode, Mode=TwoWay}" Margin="0,0,12,0"
+                         Command="{Binding SwitchToManualCommand}"/>
+            <RadioButton Content="自动控制" Style="{StaticResource ModeRadioStyle}" GroupName="PhaseTestMode"
+                         IsChecked="{Binding IsAutoMode, Mode=TwoWay}"
+                         Command="{Binding SwitchToAutoCommand}"/>
+        </StackPanel>
+
+        <!-- ═══════════════ 手动控制面板 ═══════════════ -->
+        <Grid Grid.Row="2" Margin="28,16,28,16" Visibility="{Binding IsManualMode, Converter={StaticResource myBoolToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 开关拓扑 -->
+            <Border Grid.Column="0" Margin="0,0,16,0" CornerRadius="16" BorderThickness="1"
+                    Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}">
+                <Grid Margin="24,20,24,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="Sitemap" Width="20" Height="20" Foreground="{DynamicResource AccentBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBlock Text="开关拓扑（4 个开关 × 6 通道，点击通道切换）" FontSize="17" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1" Margin="0,18,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- 开关 1 -->
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="开关 1" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                            </StackPanel>
+                            <ItemsControl Grid.Column="1" ItemsSource="{Binding Switch1Channels}" VerticalAlignment="Center">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate><UniformGrid Columns="6"/></ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{StaticResource ChannelButtonStyle}"
+                                                Command="{Binding DataContext.SelectChannelCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                                CommandParameter="{Binding}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+
+                        <!-- 开关 2 -->
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="开关 2" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                            </StackPanel>
+                            <ItemsControl Grid.Column="1" ItemsSource="{Binding Switch2Channels}" VerticalAlignment="Center">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate><UniformGrid Columns="6"/></ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{StaticResource ChannelButtonStyle}"
+                                                Command="{Binding DataContext.SelectChannelCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                                CommandParameter="{Binding}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+
+                        <!-- 开关 3 -->
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="开关 3" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                            </StackPanel>
+                            <ItemsControl Grid.Column="1" ItemsSource="{Binding Switch3Channels}" VerticalAlignment="Center">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate><UniformGrid Columns="6"/></ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{StaticResource ChannelButtonStyle}"
+                                                Command="{Binding DataContext.SelectChannelCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                                CommandParameter="{Binding}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+
+                        <!-- 开关 4 -->
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="开关 4" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                            </StackPanel>
+                            <ItemsControl Grid.Column="1" ItemsSource="{Binding Switch4Channels}" VerticalAlignment="Center">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate><UniformGrid Columns="6"/></ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{StaticResource ChannelButtonStyle}"
+                                                Command="{Binding DataContext.SelectChannelCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                                CommandParameter="{Binding}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- 相位读取 -->
+            <Border Grid.Column="1" CornerRadius="16" BorderThickness="1"
+                    Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}">
+                <StackPanel Margin="24,20,24,20">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="TuneVertical" Width="20" Height="20" Foreground="{DynamicResource AccentBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBlock Text="相位读取" FontSize="17" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                    </StackPanel>
+
+                    <Border Height="1" Background="{DynamicResource BorderBrush}" Margin="0,14,0,0"/>
+
+                    <!-- 当前通道信息 -->
+                    <Grid Margin="0,18,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="当前通道" FontSize="14" Foreground="{DynamicResource TextSecondaryBrush}" FontFamily="Microsoft YaHei"/>
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Right" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" FontFamily="Microsoft YaHei"
+                                   Text="{Binding SelectedChannel.SwitchNumber, FallbackValue=—}"/>
+
+                        <TextBlock Grid.Row="1" Text="通道" FontSize="14" Foreground="{DynamicResource TextSecondaryBrush}" FontFamily="Microsoft YaHei" Margin="0,10,0,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" FontFamily="Microsoft YaHei" Margin="0,10,0,0"
+                                   Text="{Binding SelectedChannel.ChannelNumber, FallbackValue=—}"/>
+
+                        <TextBlock Grid.Row="2" Text="读取状态" FontSize="14" Foreground="{DynamicResource TextSecondaryBrush}" FontFamily="Microsoft YaHei" Margin="0,10,0,0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" FontSize="14"
+                                   Foreground="{DynamicResource AccentBrush}" FontFamily="Microsoft YaHei" Margin="0,10,0,0"
+                                   Text="{Binding PhaseReadStatus}"/>
+                    </Grid>
+
+                    <!-- 相位大字显示 -->
+                    <Border CornerRadius="14" Background="{DynamicResource AccentLightBrush}" Margin="0,24,0,0" Padding="20,18">
+                        <StackPanel>
+                            <TextBlock Text="相位值" FontSize="13" Foreground="{DynamicResource AccentBrush}" HorizontalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                            <TextBlock Text="{Binding PhaseValue}" FontSize="44" FontWeight="Bold"
+                                       Foreground="{DynamicResource AccentBrush}" HorizontalAlignment="Center"
+                                       FontFamily="Microsoft YaHei" Margin="0,6,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Button Height="48" Margin="0,24,0,0" Style="{StaticResource PrimaryButtonStyle}"
+                            Command="{Binding ReadPhaseCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Refresh" Width="20" Height="20" Foreground="{DynamicResource ButtonPrimaryFgBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="读取相位" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource ButtonPrimaryFgBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                        </StackPanel>
+                    </Button>
+
+                    <TextBlock Margin="0,16,0,0" FontSize="12" Foreground="{DynamicResource TextMutedBrush}"
+                               TextWrapping="Wrap" FontFamily="Microsoft YaHei"
+                               Text="提示：点击左侧拓扑选中通道后，点击“读取相位”从矢量网络分析仪获取当前通道的相位值。"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- ═══════════════ 自动控制面板 ═══════════════ -->
+        <Grid Grid.Row="2" Margin="28,16,28,16" Visibility="{Binding IsAutoMode, Converter={StaticResource myBoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- 控制条 -->
+            <Border CornerRadius="16" BorderThickness="1" Background="{DynamicResource CardBackgroundBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}" Padding="24,16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Width="120" Height="44" 
+                            Command="{Binding StartAutoTestCommand}" Content="{Binding StartBtnText}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
+                                <!-- false 分支不用写任何东西：继承 PrimaryButtonStyle 的 ButtonPrimaryBgBrush，就是当前主题色 -->
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsTestRunning}" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource TestRunningBgBrush}"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource TestRunningFgBrush}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Grid.Column="1" Width="100" Height="44" Margin="12,0,0,0" Style="{StaticResource SecondaryButtonStyle}"
+                            Command="{Binding PauseAutoTestCommand}" Content="{Binding PauseBtnText}"
+                            IsEnabled="{Binding IsTestRunning}"/>
+                    <Border Grid.Column="2" Margin="20,0,0,0" Background="{DynamicResource AccentLightBrush}" CornerRadius="10" Padding="14,8">
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="8" Height="8" VerticalAlignment="Center" Margin="0,0,8,0">
+                                <Ellipse.Style>
+                                    <Style TargetType="Ellipse">
+                                        <Setter Property="Fill" Value="{DynamicResource TextMutedBrush}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsTestRunning}" Value="True">
+                                                <Setter Property="Fill" Value="{DynamicResource SuccessBrush}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Ellipse.Style>
+                            </Ellipse>
+                            <TextBlock Text="{Binding TestStatus}" FontSize="14" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource AccentBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 循环次数 -->
+                    <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="循环次数" FontSize="14" Foreground="{DynamicResource TextSecondaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                        <TextBox Width="64" Height="32" Margin="8,0,0,0" TextAlignment="Center"
+                                 VerticalContentAlignment="Center" FontSize="14"
+                                 Foreground="{DynamicResource TextPrimaryBrush}"
+                                 Text="{Binding LoopCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewTextInput="NumericPreviewTextInput"
+                                 InputMethod.IsInputMethodEnabled="False"/>
+                    </StackPanel>
+
+                    <!-- 进度 -->
+                    <ProgressBar Grid.Column="4" Height="12" Margin="20,0,0,0" VerticalAlignment="Center"
+                                 Minimum="0" Maximum="{Binding TotalSteps}" Value="{Binding CompletedSteps}"
+                                 Background="{DynamicResource SurfaceAltBrush}" Foreground="{DynamicResource AccentBrush}"
+                                 BorderThickness="0"/>
+                    <TextBlock Grid.Column="5" Margin="14,0,0,0" FontSize="14" Foreground="{DynamicResource TextSecondaryBrush}"
+                               VerticalAlignment="Center" FontFamily="Microsoft YaHei">
+                        <Run Text="{Binding CompletedSteps, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding TotalSteps, Mode=OneWay}"/>
+                    </TextBlock>
+                </Grid>
+            </Border>
+
+            <!-- 测试范围选择（开关 / 通道多选） -->
+            <Border Grid.Row="1" Margin="0,16,0,0" CornerRadius="16" BorderThickness="1"
+                    Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}" Padding="24,16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel VerticalAlignment="Center" Margin="0,0,28,0">
+                        <md:PackIcon Kind="FilterVariant" Width="20" Height="20" Foreground="{DynamicResource AccentBrush}" HorizontalAlignment="Center" Margin="0,0,0,6"/>
+                        <TextBlock Text="测试范围" FontSize="14" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" HorizontalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                    </StackPanel>
+
+                    <!-- 开关选择 -->
+                    <StackPanel Grid.Column="1" Margin="0,0,32,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="开关" FontSize="14" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TextPrimaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei" Margin="0,0,10,0"/>
+                            <Button Content="全选" Width="48" Height="24" FontSize="12" Margin="0,0,6,0"
+                                    Style="{StaticResource SecondaryButtonStyle}" Command="{Binding SelectAllSwitchesCommand}"/>
+                            <Button Content="清空" Width="48" Height="24" FontSize="12"
+                                    Style="{StaticResource SecondaryButtonStyle}" Command="{Binding ClearSwitchesCommand}"/>
+                        </StackPanel>
+                        <ItemsControl Margin="0,8,0,0" ItemsSource="{Binding SwitchFilterItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="1"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource FilterButtonStyle}"
+                                        Command="{Binding DataContext.ToggleFilterCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                        CommandParameter="{Binding}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- 通道选择 -->
+                    <StackPanel Grid.Column="2">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="通道" FontSize="14" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TextPrimaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei" Margin="0,0,10,0"/>
+                            <Button Content="全选" Width="48" Height="24" FontSize="12" Margin="0,0,6,0"
+                                    Style="{StaticResource SecondaryButtonStyle}" Command="{Binding SelectAllChannelsCommand}"/>
+                            <Button Content="清空" Width="48" Height="24" FontSize="12"
+                                    Style="{StaticResource SecondaryButtonStyle}" Command="{Binding ClearChannelsCommand}"/>
+                        </StackPanel>
+                        <ItemsControl Margin="0,8,0,0" ItemsSource="{Binding ChannelFilterItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate><UniformGrid Rows="1"/></ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource FilterButtonStyle}"
+                                            Command="{Binding DataContext.ToggleFilterCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                            CommandParameter="{Binding}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- 频率参数（频点统一 MHz） -->
+                    <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="32,0,0,0">
+                        <TextBlock Text="起始频率" FontSize="14" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei" Margin="0,0,8,0"/>
+                        <TextBox Width="76" Height="32" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="14"
+                                 Foreground="{DynamicResource TextPrimaryBrush}"
+                                 Text="{Binding StartFreqMHz, Mode=TwoWay}"
+                                 PreviewTextInput="DecimalPreviewTextInput"
+                                 InputMethod.IsInputMethodEnabled="False"/>
+                        <TextBlock Text="MHz" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center" Margin="4,0,20,0" FontFamily="Microsoft YaHei"/>
+                        <TextBlock Text="终止频率" FontSize="14" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei" Margin="0,0,8,0"/>
+                        <TextBox Width="76" Height="32" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="14"
+                                 Foreground="{DynamicResource TextPrimaryBrush}"
+                                 Text="{Binding StopFreqMHz, Mode=TwoWay}"
+                                 PreviewTextInput="DecimalPreviewTextInput"
+                                 InputMethod.IsInputMethodEnabled="False"/>
+                        <TextBlock Text="MHz" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center" Margin="4,0,20,0" FontFamily="Microsoft YaHei"/>
+                        <TextBlock Text="频率点数" FontSize="14" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei" Margin="0,0,8,0"/>
+                        <TextBox Width="56" Height="32" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="14"
+                                 Foreground="{DynamicResource TextPrimaryBrush}"
+                                 Text="{Binding FreqPointCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewTextInput="NumericPreviewTextInput"
+                                 InputMethod.IsInputMethodEnabled="False"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- 结果表格 -->
+
+            <Border Grid.Row="2" Margin="0,16,0,0" CornerRadius="16" BorderThickness="1"
+                    Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}">
+                <Grid Margin="20,16,20,16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Table" Width="20" Height="20" Foreground="{DynamicResource AccentBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBlock Text="测试结果（频点 / 通道 / 相位值）" FontSize="17" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TextPrimaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="保存通道" FontSize="13" Foreground="{DynamicResource TextSecondaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei" Margin="0,0,8,0"/>
+                            <ComboBox Width="110" Height="30" VerticalContentAlignment="Center" FontSize="13"
+                                      ItemsSource="{Binding SaveChannelOptions}" SelectedItem="{Binding SelectedSaveChannel}"/>
+                            <Button VerticalAlignment="Center" Height="30" Padding="14,0" Margin="12,0,0,0"
+                                    Style="{StaticResource SecondaryButtonStyle}" Command="{Binding SaveCsvCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="ContentSave" Width="16" Height="16" Foreground="{DynamicResource ButtonSecondaryFgBrush}" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                    <TextBlock Text="保存CSV" FontSize="13" Foreground="{DynamicResource ButtonSecondaryFgBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <DataGrid Grid.Row="1" Margin="0,14,0,0" ItemsSource="{Binding TestResults}"
+                              AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False"
+                              HeadersVisibility="Column" SelectionMode="Single"
+                              Background="Transparent" Foreground="{DynamicResource TextPrimaryBrush}"
+                              RowBackground="{DynamicResource CardBackgroundBrush}"
+                              HorizontalGridLinesBrush="{DynamicResource BorderBrush}"
+                              VerticalGridLinesBrush="{DynamicResource BorderBrush}"
+                              FontSize="14" RowHeight="36">
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+                        </DataGrid.Resources>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Background" Value="{DynamicResource SurfaceAltBrush}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+                                <Setter Property="Height" Value="36"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource AccentLightBrush}"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="序号" Binding="{Binding Index}" Width="*"/>
+                            <DataGridTextColumn Header="频率(MHz)" Binding="{Binding FrequencyMHz, StringFormat={}{0:F1}}" Width="1.2*"/>
+                            <DataGridTextColumn Header="循环" Binding="{Binding LoopLabel}" Width="*"/>
+                            <DataGridTextColumn Header="开关号" Binding="{Binding SwitchNumber}" Width="*"/>
+                            <DataGridTextColumn Header="通道号" Binding="{Binding ChannelNumber}" Width="*"/>
+                            <DataGridTextColumn Header="通道" Binding="{Binding ChannelLabel}" Width="*"/>
+                            <DataGridTextColumn Header="相位值" Binding="{Binding PhaseValue}" Width="1.2*"/>
+                            <DataGridTextColumn Header="状态" Binding="{Binding Status}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- ═══════════════ 日志面板 ═══════════════ -->
+        <Border Grid.Row="3" Margin="28,0,28,20" CornerRadius="16" BorderThickness="1"
+                Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}">
+            <Grid Margin="20,12,20,12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <md:PackIcon Kind="ConsoleLine" Width="18" Height="18" Foreground="{DynamicResource AccentBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <TextBlock Text="运行日志" FontSize="15" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextPrimaryBrush}" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                    <Button Margin="16,0,0,0" Height="26" Padding="12,0" Style="{StaticResource SecondaryButtonStyle}"
+                            Command="{Binding ClearLogCommand}">
+                        <TextBlock Text="清空" FontSize="12" Foreground="{DynamicResource ButtonSecondaryFgBrush}" FontFamily="Microsoft YaHei"/>
+                    </Button>
+                </StackPanel>
+                <ListBox Grid.Row="1" Margin="0,10,0,0" Height="86" ItemsSource="{Binding LogEntries}"
+                         Controls:ListBoxAutoScrollHelper.AutoScrollToNewItem="True"
+                         Background="{DynamicResource SurfaceAltBrush}" BorderThickness="0"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="6,2">
+                                <TextBlock Text="{Binding Timestamp}" FontSize="12" Foreground="{DynamicResource TextMutedBrush}"
+                                           VerticalAlignment="Center" FontFamily="Consolas"/>
+                                <TextBlock Text="{Binding Message}" FontSize="13" Margin="10,0,0,0"
+                                           VerticalAlignment="Center" FontFamily="Microsoft YaHei">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsError}" Value="True">
+                                                    <Setter Property="Foreground" Value="{DynamicResource ErrorBrush}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

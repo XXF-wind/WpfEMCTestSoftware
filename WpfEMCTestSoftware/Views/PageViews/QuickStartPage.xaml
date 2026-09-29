@@ -1,0 +1,277 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls"
+    x:Class="WpfEMCTestSoftware.Views.QuickStartPage"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    DataContext="{Binding QuickStartViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d" FontSize="24"
+    d:DesignHeight="893" d:DesignWidth="1840"
+    Title="QuickStartPage">
+    <Grid Background="{DynamicResource PageBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <!-- 第0行 -->
+            <RowDefinition Height="1*"/>
+            <!-- 第1行 -->
+            <RowDefinition Height="1*"/>
+            <!-- 第2行 -->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <UniformGrid Columns="5" Grid.Row="1">
+            <Grid Margin =" 20 40 20 40" Background="{DynamicResource CardBackgroundBrush}" Opacity="1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="1.7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- 图标：混响室（主题淡色圆角底 + 主题强调色矢量线条图标） -->
+                <Border Width="100" Height="100" VerticalAlignment="Top"
+                        HorizontalAlignment="Left" Margin="20 -20 0 0"
+                        Background="{DynamicResource AccentLightBrush}"
+                        BorderBrush="{DynamicResource BorderStrongBrush}" CornerRadius="14">
+                    <Controls:RoundedButton BorderThickness="0,0,0,0" BorderBrush="{x:Null}"
+                            Width="100" Height="100" Background="Transparent" CornerRadius="14"
+                            Command="{Binding ItemIconClickCommand}"
+                            CommandParameter="混响室" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <md:PackIcon Kind="Waves" Width="52" Height="52" Foreground="{DynamicResource AccentBrush}"/>
+                    </Controls:RoundedButton>
+                </Border>
+                <StackPanel HorizontalAlignment="Right">
+                    <md:PopupBox Grid.Row="1" 
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         PlacementMode="RightAndAlignTopEdges" Margin="10">
+                        <md:PopupBox.ToggleContent>
+                            <md:PackIcon Kind="ChartBar" Width="60" Height="60" Cursor="Hand"
+                                         Foreground="{DynamicResource TextSecondaryBrush}" />
+                        </md:PopupBox.ToggleContent>
+                        <StackPanel Margin="10" md:ButtonAssist.CornerRadius="5">
+                            <Button Content="场地均匀性测试" Command="{Binding OnswitchPageCommand}" CommandParameter="1004"/>
+                            <Button Content="场地均匀性分析" Command="{Binding OnswitchPageCommand}" CommandParameter="1006"/>
+                            <Button Content="最大载荷计算"/>
+                            <Button Content="CLF数据计算"/>
+                            <Button Content="EUT过载验证"/>
+                            <Button Content="RS注入功率计算"/>
+                        </StackPanel>
+                    </md:PopupBox>
+                    <TextBlock Text="测试分析" HorizontalAlignment="Center" FontSize="12" Foreground="{DynamicResource TextMutedBrush}"/>
+                </StackPanel>
+                <Border Margin="20 0 20 0" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource BorderBrush}" VerticalAlignment="Bottom"/>
+                <TextBlock Grid.Row="1" Text="混响室测试系统" FontSize="16" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="{DynamicResource TextPrimaryBrush}" FontWeight="Bold"/>
+            </Grid>
+
+            <Grid Margin =" 20 40 20 40" Background="{DynamicResource CardBackgroundBrush}" Opacity="1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="1.7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- 图标：功放（主题淡色圆角底 + 主题强调色矢量线条图标） -->
+                <Border Width="100" Height="100" VerticalAlignment="Top"
+                        HorizontalAlignment="Left" Margin="20 -20 0 0"
+                        Background="{DynamicResource AccentLightBrush}"
+                        BorderBrush="{DynamicResource BorderStrongBrush}" CornerRadius="14">
+                    <Controls:RoundedButton BorderThickness="0,0,0,0" BorderBrush="{x:Null}"
+                            Width="100" Height="100" Background="Transparent" CornerRadius="14"
+                            Command="{Binding ItemIconClickCommand}"
+                            CommandParameter="混响室" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <md:PackIcon Kind="Amplifier" Width="52" Height="52" Foreground="{DynamicResource AccentBrush}"/>
+                    </Controls:RoundedButton>
+                </Border>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="$谐波" HorizontalAlignment="Center" FontSize="12" Cursor="Hand"
+                               Foreground="{DynamicResource TextMutedBrush}" Margin="0 0 0 10"/>
+                    <TextBlock Text="$耦合" HorizontalAlignment="Center" FontSize="12" Cursor="Hand"
+                               Foreground="{DynamicResource TextMutedBrush}" Margin="0 0 0 10"/>
+                    <TextBlock Text="功放线性度测试" HorizontalAlignment="Center" FontSize="14" Cursor="Hand"
+                               Foreground="{DynamicResource TextMutedBrush}" Margin="0 0 0 10"/>
+                </StackPanel>
+                <Border Margin="20 0 20 0" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource BorderBrush}" VerticalAlignment="Bottom"/>
+                <TextBlock Grid.Row="1" Text="功放测试系统" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" Margin="20 0 0 0" Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </Grid>
+            <Grid Margin =" 20 40 20 40" Background="{DynamicResource CardBackgroundBrush}" Opacity="1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="1.7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- 图标：传导安全裕度（组合测试：传导插头主图标 + 盾形裕度角标，主题淡色圆角底 + 主题强调色矢量线条） -->
+                <Border Width="100" Height="100" VerticalAlignment="Top"
+            HorizontalAlignment="Left" Margin="20 -20 0 0"
+            Background="{DynamicResource AccentLightBrush}"
+            BorderBrush="{DynamicResource BorderStrongBrush}" CornerRadius="14">
+                    <Controls:RoundedButton BorderThickness="0,0,0,0" BorderBrush="{x:Null}"
+                Width="100" Height="100" Background="Transparent" CornerRadius="14"
+                Command="{Binding ItemIconClickCommand}"
+                CommandParameter="CE101" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Grid Width="52" Height="52">
+                            <md:PackIcon Kind="PowerPlug" Width="44" Height="44" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource AccentBrush}"/>
+                            <Border Width="24" Height="24" CornerRadius="12" Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderStrongBrush}" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                <md:PackIcon Kind="ShieldCheck" Width="15" Height="15" Foreground="{DynamicResource AccentBrush}"/>
+                            </Border>
+                        </Grid>
+                    </Controls:RoundedButton>
+                </Border>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button Content="CE101" HorizontalAlignment="Center" FontSize="12"
+                            Style="{DynamicResource NoHoverButtonStyle}"
+                            Foreground="{DynamicResource TextMutedBrush}"
+                            Background="{DynamicResource TextOnAccentBrush}"  
+                            Command="{Binding ItemIconClickCommand}"
+                            CommandParameter="CE101" Cursor="Hand" Margin="0,0,30,10"/>
+
+                    <Button Content="CS114" HorizontalAlignment="Center" FontSize="12"
+                            Style="{DynamicResource NoHoverButtonStyle}"
+                            Foreground="{DynamicResource TextMutedBrush}"
+                            Background="{DynamicResource TextOnAccentBrush}"
+                            Command="{Binding ItemIconClickCommand}"
+                            CommandParameter="CS114" Cursor="Hand" Margin="0,0,30,10"/>
+                </StackPanel>
+                <Border Margin="20 0 20 0" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource BorderBrush}" VerticalAlignment="Bottom"/>
+                <TextBlock Grid.Row="1" Text="传导安全裕度" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" Margin="20 0 0 0" Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </Grid>
+            <Grid Margin =" 20 40 20 40" Background="{DynamicResource CardBackgroundBrush}" Opacity="1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="1.7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- 图标：辐射安全裕度（组合测试：辐射天线主图标 + 盾形裕度角标，主题淡色圆角底 + 主题强调色矢量线条） -->
+                <Border Width="100" Height="100" VerticalAlignment="Top"
+            HorizontalAlignment="Left" Margin="20 -20 0 0"
+            Background="{DynamicResource AccentLightBrush}"
+            BorderBrush="{DynamicResource BorderStrongBrush}" CornerRadius="14">
+                    <Controls:RoundedButton BorderThickness="0,0,0,0" BorderBrush="{x:Null}"
+                Width="100" Height="100" Background="Transparent" CornerRadius="14"
+                Command="{Binding ItemIconClickCommand}"
+                CommandParameter="RE102" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Grid Width="52" Height="52">
+                            <md:PackIcon Kind="RadioTower" Width="44" Height="44" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource AccentBrush}"/>
+                            <Border Width="24" Height="24" CornerRadius="12" Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderStrongBrush}" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                <md:PackIcon Kind="ShieldCheck" Width="15" Height="15" Foreground="{DynamicResource AccentBrush}"/>
+                            </Border>
+                        </Grid>
+                    </Controls:RoundedButton>
+                </Border>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button Content="RE102" HorizontalAlignment="Center" FontSize="12"
+                            Style="{DynamicResource NoHoverButtonStyle}"
+                            Foreground="{DynamicResource TextMutedBrush}"
+                            Background="{DynamicResource TextOnAccentBrush}"
+                            Command="{Binding ItemIconClickCommand}"
+                            CommandParameter="RE102" Cursor="Hand" Margin="0,0,30,10"/>
+                    <Button Content="RS103" HorizontalAlignment="Center" FontSize="12"
+                            Style="{DynamicResource NoHoverButtonStyle}"
+                            Foreground="{DynamicResource TextMutedBrush}"
+                            Background="{DynamicResource TextOnAccentBrush}"
+                            Command="{Binding ItemIconClickCommand}"
+                            CommandParameter="RS103" Cursor="Hand" Margin="0,0,30,10"/>
+
+                </StackPanel>
+                <Border Margin="20 0 20 0" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource BorderBrush}" VerticalAlignment="Bottom"/>
+                <TextBlock Grid.Row="1" Text="辐射安全裕度" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" Margin="20 0 0 0" Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </Grid>
+            
+        </UniformGrid>
+        <UniformGrid Columns="10" Grid.Row="3">
+            <Grid Margin ="10,40,10,40" Background="{DynamicResource CardBackgroundBrush}" Opacity="1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="1.7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- 图标：CE101 电源线传导发射（独立测试风格：主题强调色描边圆形底 + PowerSocket 图标，与上排组合测试的淡色实底方形区分） -->
+                <Border Width="100" Height="100" VerticalAlignment="Top"
+                  HorizontalAlignment="Left" Margin="16,-20,0,0"
+                  Background="{DynamicResource CardBackgroundBrush}"
+                  BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" CornerRadius="50">
+                    <Controls:RoundedButton BorderThickness="0,0,0,0" BorderBrush="{x:Null}"
+                      Width="96" Height="96" Background="Transparent" CornerRadius="48"
+                      Command="{Binding ItemIconClickCommand}"
+                      CommandParameter="CE101" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <md:PackIcon Kind="PowerSocket" Width="52" Height="52" Foreground="{DynamicResource AccentBrush}"/>
+                    </Controls:RoundedButton>
+                </Border>
+
+                <Border Margin="20 0 20 0" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource BorderBrush}" VerticalAlignment="Bottom"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20 0 0 0" VerticalAlignment="Center">
+                    <Border Width="4" Height="16" CornerRadius="2" Background="{DynamicResource AccentBrush}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="CE101" FontSize="16" VerticalAlignment="Center" Foreground="{DynamicResource TextPrimaryBrush}" FontWeight="Bold"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin ="10,40,10,40" Background="{DynamicResource CardBackgroundBrush}" Opacity="1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="1.7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- 图标：CS114 电缆注入敏感度（独立测试风格：主题强调色描边圆形底 + CableData 图标，与上排组合测试的淡色实底方形区分） -->
+                <Border Width="100" Height="100" VerticalAlignment="Top"
+                  HorizontalAlignment="Left" Margin="16,-20,0,0"
+                  Background="{DynamicResource CardBackgroundBrush}"
+                  BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" CornerRadius="50">
+                    <Controls:RoundedButton BorderThickness="0,0,0,0" BorderBrush="{x:Null}"
+                      Width="96" Height="96" Background="Transparent" CornerRadius="48"
+                      Command="{Binding ItemIconClickCommand}"
+                      CommandParameter="CS114" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <md:PackIcon Kind="CableData" Width="52" Height="52" Foreground="{DynamicResource AccentBrush}"/>
+                    </Controls:RoundedButton>
+                </Border>
+
+                <Border Margin="20 0 20 0" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource BorderBrush}" VerticalAlignment="Bottom"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20 0 0 0" VerticalAlignment="Center">
+                    <Border Width="4" Height="16" CornerRadius="2" Background="{DynamicResource AccentBrush}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="CS114" FontSize="16" VerticalAlignment="Center" Foreground="{DynamicResource TextPrimaryBrush}" FontWeight="Bold"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin ="10,40,10,40" Background="{DynamicResource CardBackgroundBrush}" Opacity="1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="1.7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- 图标：RE102 电场辐射发射（独立测试风格：主题强调色描边圆形底 + Broadcast 图标，与上排组合测试的淡色实底方形区分） -->
+                <Border Width="100" Height="100" VerticalAlignment="Top"
+                  HorizontalAlignment="Left" Margin="16,-20,0,0"
+                  Background="{DynamicResource CardBackgroundBrush}"
+                  BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" CornerRadius="50">
+                    <Controls:RoundedButton BorderThickness="0,0,0,0" BorderBrush="{x:Null}"
+                      Width="96" Height="96" Background="Transparent" CornerRadius="48"
+                      Command="{Binding ItemIconClickCommand}"
+                      CommandParameter="RE102" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <md:PackIcon Kind="Broadcast" Width="52" Height="52" Foreground="{DynamicResource AccentBrush}"/>
+                    </Controls:RoundedButton>
+                </Border>
+
+                <Border Margin="20 0 20 0" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource BorderBrush}" VerticalAlignment="Bottom"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20 0 0 0" VerticalAlignment="Center">
+                    <Border Width="4" Height="16" CornerRadius="2" Background="{DynamicResource AccentBrush}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="RE102" FontSize="16" VerticalAlignment="Center" Foreground="{DynamicResource TextPrimaryBrush}" FontWeight="Bold"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin ="10,40,10,40" Background="{DynamicResource CardBackgroundBrush}" Opacity="1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="1.7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- 图标：RS103 辐射场敏感度（独立测试风格：主题强调色描边圆形底 + Radar 图标，与上排组合测试的淡色实底方形区分） -->
+                <Border Width="100" Height="100" VerticalAlignment="Top"
+                  HorizontalAlignment="Left" Margin="16,-20,0,0"
+                  Background="{DynamicResource CardBackgroundBrush}"
+                  BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" CornerRadius="50">
+                    <Controls:RoundedButton BorderThickness="0,0,0,0" BorderBrush="{x:Null}"
+                      Width="96" Height="96" Background="Transparent" CornerRadius="48"
+                      Command="{Binding ItemIconClickCommand}"
+                      CommandParameter="RS103" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <md:PackIcon Kind="Radar" Width="52" Height="52" Foreground="{DynamicResource AccentBrush}"/>
+                    </Controls:RoundedButton>
+                </Border>
+
+                <Border Margin="20 0 20 0" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource BorderBrush}" VerticalAlignment="Bottom"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20 0 0 0" VerticalAlignment="Center">
+                    <Border Width="4" Height="16" CornerRadius="2" Background="{DynamicResource AccentBrush}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="RS103" FontSize="16" VerticalAlignment="Center" Foreground="{DynamicResource TextPrimaryBrush}" FontWeight="Bold"/>
+                </StackPanel>
+            </Grid>
+
+
+
+        </UniformGrid>
+    </Grid>
+</Page>

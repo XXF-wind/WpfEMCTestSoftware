@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NationalInstruments.Visa" Version="25.5.0.13" />
+    <PackageReference Include="Peak.PCANBasic.NET" Version="4.10.1.968" />
+    <PackageReference Include="System.IO.Ports" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\公共库\ClassLibrary\ClassLibrary\ClassLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Equipment">
+      <HintPath>bin\Release\net8.0-windows\Equipment.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

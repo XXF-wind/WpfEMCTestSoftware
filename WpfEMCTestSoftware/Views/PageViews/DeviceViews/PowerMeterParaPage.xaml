@@ -1,0 +1,34 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfEMCTestSoftware.Views"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" 
+      x:Class="WpfEMCTestSoftware.Views.PowerMeterParaPage"
+      mc:Ignorable="d" 
+      DataContext="{Binding PowerMeterParaViewModel, Source={StaticResource Locator}}"
+      d:DesignHeight="828" d:DesignWidth="613"
+      Title="PowerMeterParaPage"
+      TextElement.Foreground="{DynamicResource TextPrimaryBrush}">
+
+    <Grid>
+        <mah:NumericUpDown Width="134" Height="46" Background="{x:Null}" Margin="307,198,0,0" FontSize="32"
+            Value="{Binding PowerMeterPara.SamplingTime, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Left"
+            Foreground="{DynamicResource TextPrimaryBrush}"/>
+        <TextBlock Text="{DynamicResource SamplingTimeTitle}" Margin="28,201,0,0" Height="40" VerticalAlignment="Top" 
+            HorizontalAlignment="Left" Width="268" TextAlignment="Right" FontSize="32"/>
+        <TextBlock Text="ms" Margin="456,201,0,0" Height="40" VerticalAlignment="Top" 
+            HorizontalAlignment="Left" Width="50" TextAlignment="Left" FontSize="32"
+            Foreground="{DynamicResource TextSecondaryBrush}"/>
+        <mah:NumericUpDown Width="134" Height="46" Background="{x:Null}" Margin="307,99,0,0" FontSize="32"
+            Value="{Binding PowerMeterPara.DescentDelay, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Left"
+            Foreground="{DynamicResource TextPrimaryBrush}"/>
+        <TextBlock Text="{DynamicResource FallDelayTitle}" Margin="28,102,0,0" Height="40" VerticalAlignment="Top" 
+            HorizontalAlignment="Left" Width="268" TextAlignment="Right" FontSize="32"/>
+        <TextBlock Text="ms" Margin="456,102,0,0" Height="40" VerticalAlignment="Top" 
+            HorizontalAlignment="Left" Width="50" TextAlignment="Left" FontSize="32"
+            Foreground="{DynamicResource TextSecondaryBrush}"/>
+
+    </Grid>
+</Page>

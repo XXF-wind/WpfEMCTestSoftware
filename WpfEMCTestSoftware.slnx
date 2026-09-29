@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="../公共库/ClassLibrary/ClassLibrary/ClassLibrary.csproj" />
+  <Project Path="../公共库/ClassLibrary/Company.UI.Controls/Company.UI.Controls.csproj" />
+  <Project Path="../公共库/ClassLibrary/FileHelperLibrary/FileHelperLibrary.csproj" />
+  <Project Path="EMCDeviceLibrary/EMCDeviceLibrary.csproj" />
+  <Project Path="WpfEMCTestSoftware/WpfEMCTestSoftware.csproj" />
+</Solution>

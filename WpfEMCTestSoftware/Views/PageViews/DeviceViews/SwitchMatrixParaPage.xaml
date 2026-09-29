@@ -1,0 +1,49 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfEMCTestSoftware.Views"
+      xmlns:UseControls="clr-namespace:Company.UI.Controls.UseControls;assembly=Company.UI.Controls" 
+      x:Class="WpfEMCTestSoftware.Views.SwitchMatrixParaPage"
+      DataContext="{Binding SwitchMatrixParaViewModel, Source={StaticResource Locator}}"
+      mc:Ignorable="d" 
+      d:DesignHeight="828" d:DesignWidth="613"
+      Title="SwitchMatrixParaPage"
+      TextElement.Foreground="{DynamicResource TextPrimaryBrush}">
+    <Grid>
+        <GroupBox Margin="50,50,0,0" Header="SW1" FontSize="32" BorderBrush="{x:Null}" Height="319"
+                  VerticalAlignment="Top" HorizontalAlignment="Left" Width="205"
+                  Foreground="{DynamicResource TextPrimaryBrush}">
+            <UseControls:UcCircuitSwitch HorizontalAlignment="Center" Height="236" Margin="0,0,0,0" 
+                                         VerticalAlignment="Center" Width="140" SwitchPositionsNum="4"
+                                         SwitchState="{Binding SwitchMatrixPara.SwitchState[0],Mode=TwoWay}"
+                                         ClickCommand="{Binding SwitchToggleCommand}" ClickCommandParameter="1"/>
+        </GroupBox>
+        <GroupBox Margin="338,50,0,0" Header="SW2" FontSize="32" BorderBrush="{x:Null}" Height="319"
+                  VerticalAlignment="Top" HorizontalAlignment="Left" Width="204"
+                  Foreground="{DynamicResource TextPrimaryBrush}">
+            <UseControls:UcCircuitSwitch HorizontalAlignment="Center" Height="236" Margin="0,0,0,0" 
+                                         VerticalAlignment="Center" Width="140" SwitchPositionsNum="4"
+                                         SwitchState="{Binding SwitchMatrixPara.SwitchState[1], Mode=TwoWay}"
+                                         ClickCommand="{Binding SwitchToggleCommand}" ClickCommandParameter="2"/>
+        </GroupBox>
+        <GroupBox Margin="50,454,0,0" Header="SW3" FontSize="32" BorderBrush="{x:Null}" Height="319"
+                  VerticalAlignment="Top" HorizontalAlignment="Left" Width="204"
+                  Foreground="{DynamicResource TextPrimaryBrush}">
+            <UseControls:UcCircuitSwitch HorizontalAlignment="Center" Height="236" Margin="0,0,0,0" 
+                                         VerticalAlignment="Center" Width="140" SwitchPositionsNum="4"
+                                         SwitchState="{Binding SwitchMatrixPara.SwitchState[2], Mode=TwoWay}"
+                                         ClickCommand="{Binding SwitchToggleCommand}" ClickCommandParameter="3"/>
+        </GroupBox>
+        <GroupBox Margin="338,454,0,0" Header="SW4" FontSize="32" BorderBrush="{x:Null}" Height="319"
+                  VerticalAlignment="Top" HorizontalAlignment="Left" Width="204"
+                  Foreground="{DynamicResource TextPrimaryBrush}">
+            <UseControls:UcCircuitSwitch HorizontalAlignment="Center" Height="236" Margin="0,0,0,0" 
+                                         VerticalAlignment="Center" Width="140" SwitchPositionsNum="4"
+                                         SwitchState="{Binding SwitchMatrixPara.SwitchState[3], Mode=TwoWay}"
+                                         ClickCommand="{Binding SwitchToggleCommand}" ClickCommandParameter="4"/>
+        </GroupBox>
+
+    </Grid>
+</Page>

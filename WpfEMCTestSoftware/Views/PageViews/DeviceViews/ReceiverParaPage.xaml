@@ -1,0 +1,137 @@
+﻿<Page x:Class="WpfEMCTestSoftware.Views.ReceiverParaPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfEMCTestSoftware.Views" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+      DataContext="{Binding Source={StaticResource Locator}, Path=ReceiverParaViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="858" d:DesignWidth="688" FontSize="30"
+      Title="ReceiverParaPage"
+      TextElement.Foreground="{DynamicResource TextPrimaryBrush}">
+    <Grid>
+        <ListView VerticalAlignment="Top" Background="{x:Null}">
+            <StackPanel Orientation="Horizontal" Width="672">
+                <TextBlock Text="{DynamicResource BasicParametersTitle}" Width="674"
+                       HorizontalAlignment="Center" TextAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="{DynamicResource TestMethodTitle}" Padding="0,2,0,0"/>
+                <ComboBox ItemsSource="{Binding TestMethods}" Margin="10,0,0,0"
+                          SelectedValue="{Binding ReceiverPara.TestMethod}" Width="130"
+                          Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <CheckBox Content="{DynamicResource UseTDSTitle}" Margin="50,0,0,0" 
+                          IsChecked="{Binding ReceiverPara.IsTDS}"
+                          Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="{DynamicResource InputPortTitle}" Padding="0,2,0,0"/>
+                <ComboBox ItemsSource="{Binding InputPorts}" Margin="10,0,0,0"
+                          SelectedValue="{Binding ReceiverPara.InputPort}" Width="130"
+                          Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <TextBlock Text="{DynamicResource TrackRefreshTitle}" Padding="10,2,0,0" Margin="10,0,0,0"/>
+                <ComboBox ItemsSource="{Binding TrackDisplays}" Margin="10,0,0,0"
+                          SelectedValue="{Binding ReceiverPara.TrackDisplay}" Width="160"
+                          Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="{DynamicResource CouplingMethod}" Padding="0,2,0,0"/>
+                <ComboBox ItemsSource="{Binding CouplingMethods}" Margin="10,0,0,0"
+                    SelectedValue="{Binding ReceiverPara.CouplingMethod}" Width="130"
+                    Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <TextBlock Text="{DynamicResource PreAmplifierTitle}" Padding="10,2,0,0" Margin="10,0,0,0"/>
+                <ComboBox ItemsSource="{Binding PreAmplifiers}" Margin="10,0,0,0"
+                    SelectedValue="{Binding ReceiverPara.PreAmplifier}" Width="160"
+                    Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="{DynamicResource BottomNoiseExpanTitle}" Padding="0,2,0,0"/>
+                <ComboBox ItemsSource="{Binding BottomNoiseExpans}" Margin="10,0,0,0"
+                          SelectedValue="{Binding ReceiverPara.BottomNoiseExpan}" Width="130"
+                          Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <TextBlock Text="{DynamicResource PreSelectorTitle}" Padding="15,2,0,0" Margin="10,0,0,0"
+                           Width="137" TextAlignment="Right"/>
+                <ComboBox ItemsSource="{Binding PreSelectors}" Margin="10,0,0,0"
+                    SelectedValue="{Binding ReceiverPara.PreSelector}" Width="160"
+                    Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="672">
+                <TextBlock Text="{DynamicResource BuiltInAttenuation}" Padding="0,2,0,0"/>
+                <mah:NumericUpDown Width="140" Height="42" Background="{x:Null}" FontSize="32" Margin="10,0,0,0"
+                       Value="{Binding ReceiverPara.BuiltInAtt, Mode=TwoWay}"
+                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <TextBlock Text="dB" Padding="10,2,0,0" Foreground="{DynamicResource TextSecondaryBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="672">
+                <TextBlock Text="{DynamicResource ReferenceAmplitudeTitle}" Padding="0,2,0,0" />
+                <mah:NumericUpDown Width="140" Height="42" Background="{x:Null}" FontSize="32" Margin="10,0,0,0"
+                                   Value="{Binding ReceiverPara.ReferenceAmplitude, Mode=TwoWay}"
+                                   Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <TextBlock Text="dBμV" Padding="5,2,0,0" Foreground="{DynamicResource TextSecondaryBrush}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="672">
+                <TextBlock Text="{DynamicResource DetectorParametersTitle}" Width="674" 
+                           HorizontalAlignment="Center" TextAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="672">
+                <TextBlock Text="{DynamicResource CymoscopeTitle}"/>
+                <TextBlock Text="1:" Foreground="{DynamicResource TextSecondaryBrush}"/>
+                <ComboBox ItemsSource="{Binding Cymoscopes}" Margin="10,0,0,0"
+                          SelectedValue="{Binding ReceiverPara.Cymoscopes[0]}" Width="160"
+                          Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <TextBlock Text="{DynamicResource CymoscopeTitle}" Margin="10,0,0,0"/>
+                <TextBlock Text="2:" Foreground="{DynamicResource TextSecondaryBrush}"/>
+                <ComboBox ItemsSource="{Binding Cymoscopes}" Margin="10,0,0,0"
+                          SelectedValue="{Binding ReceiverPara.Cymoscopes[1]}" Width="160"
+                          Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="672">
+                <TextBlock Text="{DynamicResource CymoscopeTitle}"/>
+                <TextBlock Text="3:" Foreground="{DynamicResource TextSecondaryBrush}"/>
+                <ComboBox ItemsSource="{Binding Cymoscopes}" Margin="10,0,0,0"
+                          SelectedValue="{Binding ReceiverPara.Cymoscopes[2]}" Width="160"
+                          Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <TextBlock Text="{DynamicResource CymoscopeTitle}" Margin="10,0,0,0"/>
+                <TextBlock Text="4:" Foreground="{DynamicResource TextSecondaryBrush}"/>
+                <ComboBox ItemsSource="{Binding Cymoscopes}" Margin="10,0,0,0"
+                          SelectedValue="{Binding ReceiverPara.Cymoscopes[3]}" Width="160"
+                          Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="672">
+                <TextBlock Text="{DynamicResource OtherParametersTitle}" Width="674" 
+                       HorizontalAlignment="Center" TextAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="672">
+                <TextBlock Text="{DynamicResource RBWTitle}" Margin="10,0,0,0"/>
+                <mah:NumericUpDown Width="140" Height="42" Background="{x:Null}" Margin="10,0,0,0" FontSize="32"
+                                   Value="{Binding ReceiverPara.Rbw,Mode=TwoWay}"
+                                   Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <TextBlock Text="kHz" Margin="10,0,0,0" Foreground="{DynamicResource TextSecondaryBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="672">
+                <TextBlock Text="{DynamicResource StepTypeTitle}" Margin="10,0,0,0"/>
+                <ComboBox ItemsSource="{Binding StepTypes}" Margin="10,0,0,0"
+              SelectedValue="{Binding ReceiverPara.StepType}" Width="200"
+              Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="672">
+                <TextBlock Text="{DynamicResource MeasureTime}" Margin="10,0,0,0"/>
+                <mah:NumericUpDown Width="140" Height="42" Background="{x:Null}" Margin="10,0,0,0" 
+                                   FontSize="32" Value="{Binding ReceiverPara.Measuretime,Mode=TwoWay}"
+                                   Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <TextBlock Text="ms" Margin="10,0,0,0" Foreground="{DynamicResource TextSecondaryBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="672">
+                <TextBlock Text="{DynamicResource FreqStepTitle}" Margin="10,0,0,0"/>
+                <mah:NumericUpDown Width="140" Height="42" Background="{x:Null}" Margin="10,0,0,0" 
+                                   FontSize="32" Value="{Binding ReceiverPara.Frequencystep,Mode=TwoWay}"
+                                   Foreground="{DynamicResource TextPrimaryBrush}"/>
+                <ComboBox Margin="5,0,0,0" ItemsSource="{Binding FreqUnits}" 
+                          SelectedValue="{Binding ReceiverPara.FreqUnit}" Width="120"
+                          Foreground="{DynamicResource TextPrimaryBrush}"/>
+            </StackPanel>
+        </ListView>
+    </Grid>
+</Page>

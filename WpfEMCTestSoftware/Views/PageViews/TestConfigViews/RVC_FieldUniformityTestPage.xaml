@@ -1,0 +1,449 @@
+﻿<Page x:Class="WpfEMCTestSoftware.Views.PageViews.TestConfigViews.RVC_FieldUniformityTestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls"
+      xmlns:UIControlClass="clr-namespace:Company.UI.Controls.UIControlClass;assembly=Company.UI.Controls"      
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"   
+      xmlns:local="clr-namespace:WpfEMCTestSoftware.Views.PageViews.TestConfigViews"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:UseControls="clr-namespace:Company.UI.Controls.UseControls;assembly=Company.UI.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="893" d:DesignWidth="1840"
+      DataContext="{Binding RVC_FieldUniformityTestViewModel, Source={StaticResource Locator}}"
+      Title="RVC_FieldUniformityTestPage">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FirstLoadPageCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Background="#F7FBFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="17*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="5*"/>
+
+            </Grid.RowDefinitions>
+            <GroupBox Header="测试位置点状态" BorderBrush="#FFD8F2F5" FontSize="24">
+                <Viewbox>
+                    <Grid Height="366" Width="300">
+                        <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="32,234,0,0" Background="#000000" VerticalAlignment="Top" Height="10" Width="130" ShowEndArrow="False" ShowStartArrow="False" RenderTransformOrigin="0.397,0.409">
+                            <Controls:ArrowSeparator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Controls:ArrowSeparator.RenderTransform>
+                        </Controls:ArrowSeparator>
+                        <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="32,123,0,0" Background="#000000" VerticalAlignment="Top" Height="10" Width="130" ShowEndArrow="False" ShowStartArrow="False" RenderTransformOrigin="0.397,0.409">
+                            <Controls:ArrowSeparator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Controls:ArrowSeparator.RenderTransform>
+                        </Controls:ArrowSeparator>
+                        <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="-12,168,0,0" Background="#000000" VerticalAlignment="Top" Height="10" Width="112" ShowEndArrow="False" ShowStartArrow="False" RenderTransformOrigin="0.397,0.409">
+                            <Controls:ArrowSeparator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Controls:ArrowSeparator.RenderTransform>
+                        </Controls:ArrowSeparator>
+                        <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="119,168,0,0" Background="#000000" VerticalAlignment="Top" Height="10" Width="111" ShowEndArrow="False" ShowStartArrow="False" RenderTransformOrigin="0.397,0.409">
+                            <Controls:ArrowSeparator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Controls:ArrowSeparator.RenderTransform>
+                        </Controls:ArrowSeparator>
+                        <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="17,91,0,0" Background="#000000" VerticalAlignment="Top" Height="10" Width="106" ShowEndArrow="False" ShowStartArrow="False" RenderTransformOrigin="0.397,0.409">
+                            <Controls:ArrowSeparator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-47.863"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Controls:ArrowSeparator.RenderTransform>
+                        </Controls:ArrowSeparator>
+                        <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="147,92,0,0" Background="#000000" VerticalAlignment="Top" Height="10" Width="106" ShowEndArrow="False" ShowStartArrow="False" RenderTransformOrigin="0.397,0.409">
+                            <Controls:ArrowSeparator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-47.863"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Controls:ArrowSeparator.RenderTransform>
+                        </Controls:ArrowSeparator>
+                        <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="103,44,0,0" Background="#000000" VerticalAlignment="Top" Height="10" Width="130" ShowEndArrow="False" ShowStartArrow="False" RenderTransformOrigin="0.397,0.409">
+                            <Controls:ArrowSeparator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Controls:ArrowSeparator.RenderTransform>
+                        </Controls:ArrowSeparator>
+                        <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="148,202,0,0" Background="#000000" VerticalAlignment="Top" Height="10" Width="106" ShowEndArrow="False" ShowStartArrow="False" RenderTransformOrigin="0.397,0.409">
+                            <Controls:ArrowSeparator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-47.863"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Controls:ArrowSeparator.RenderTransform>
+                        </Controls:ArrowSeparator>
+                        <Controls:ArrowSeparator HorizontalAlignment="Left" Margin="190,87,0,0" Background="#000000" VerticalAlignment="Top" Height="19" Width="113" ShowEndArrow="False" ShowStartArrow="False" RenderTransformOrigin="0.397,0.409">
+                            <Controls:ArrowSeparator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Controls:ArrowSeparator.RenderTransform>
+                        </Controls:ArrowSeparator>
+                        <UIControlClass:DashLine HorizontalAlignment="Left" Height="16" Margin="15,192,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.5,0.5">
+                            <UIControlClass:DashLine.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-47.863"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </UIControlClass:DashLine.RenderTransform>
+                        </UIControlClass:DashLine>
+                        <UIControlClass:DashLine HorizontalAlignment="Left" Height="8" Margin="104,156,0,0" VerticalAlignment="Top" Width="128"/>
+                        <UIControlClass:DashLine HorizontalAlignment="Left" Height="22" Margin="49,94,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.5,0.5">
+                            <UIControlClass:DashLine.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </UIControlClass:DashLine.RenderTransform>
+                        </UIControlClass:DashLine>
+                        <RadioButton Margin="21,228,0,0" Content="1" 
+                            Background="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.ChannelStates[0], Converter={StaticResource ChannelStatusToBrushConverter}}"
+                            IsChecked="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.TestContext.CurPosition,Mode=OneWay,
+                            Converter={StaticResource ValueToBoolConverter}, ConverterParameter=1}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                       <RadioButton Margin="152,228,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="2" 
+                            Background="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.ChannelStates[1], Converter={StaticResource ChannelStatusToBrushConverter}}"
+                            IsChecked="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.TestContext.CurPosition,Mode=OneWay,
+                            Converter={StaticResource ValueToBoolConverter},ConverterParameter=2}"/>
+                        <RadioButton  Margin="152,118,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="3" 
+                            Background="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.ChannelStates[2], Converter={StaticResource ChannelStatusToBrushConverter}}"
+                            IsChecked="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.TestContext.CurPosition,Mode=OneWay,
+                            Converter={StaticResource ValueToBoolConverter},ConverterParameter=3}"/>
+                        <RadioButton Margin="21,118,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="4"
+                          Background="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.ChannelStates[3], Converter={StaticResource ChannelStatusToBrushConverter}}"
+                          IsChecked="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.TestContext.CurPosition,Mode=OneWay,
+                          Converter={StaticResource ValueToBoolConverter},ConverterParameter=4}"/>
+                        <RadioButton Margin="96,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="5" 
+                          Background="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.ChannelStates[4], Converter={StaticResource ChannelStatusToBrushConverter}}"
+                          IsChecked="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.TestContext.CurPosition,Mode=OneWay,
+                         Converter={StaticResource ValueToBoolConverter},ConverterParameter=5}"/>
+                        <RadioButton Content="6" Margin="222,150,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" 
+                          Background="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.ChannelStates[5], Converter={StaticResource ChannelStatusToBrushConverter}}"
+                          IsChecked="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.TestContext.CurPosition,Mode=OneWay,
+                          Converter={StaticResource ValueToBoolConverter},ConverterParameter=6}"/>
+                        <RadioButton Content="7" Margin="222,39,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" 
+                           Background="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.ChannelStates[6], Converter={StaticResource ChannelStatusToBrushConverter}}"
+                           IsChecked="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.TestContext.CurPosition,Mode=OneWay,
+                           Converter={StaticResource ValueToBoolConverter},ConverterParameter=7}"/>
+                        <RadioButton Margin="93,39,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Content="8" 
+                           Background="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.ChannelStates[7], Converter={StaticResource ChannelStatusToBrushConverter}}"
+                          IsChecked="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.TestContext.CurPosition,Mode=OneWay,
+                          Converter={StaticResource ValueToBoolConverter},ConverterParameter=8}"/>
+                        <RadioButton  Margin="104,187,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Content="9" 
+                          Background="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.ChannelStates[8],Converter={StaticResource ChannelStatusToBrushConverter}}"
+                          IsChecked="{Binding RVC_FieldUniformityTestViewModel.BaseTasks.TestContext.CurPosition,Mode=OneWay,
+                          Converter={StaticResource ValueToBoolConverter},ConverterParameter=9}"/>
+                    </Grid>
+                </Viewbox>
+            </GroupBox>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+                <GroupBox Header="水平搅拌器角度" FontSize="24" BorderBrush="#FFD8F2F5" >
+                    <Controls:CircularGaugeControl x:Name="Voltmeter"
+                     Radius="30" ScaleRadius="80" ScaleStartAngle="270" ScaleSweepAngle="360"
+                     PointerLength="50" PointerCapRadius="20" MinValue="0" MaxValue="360" 
+                     MajorDivisionsCount="8" MinorDivisionsCount="5" OptimalRangeStartValue="0"
+                     OptimalRangeEndValue="360" CurrentValue="0" ImageSize="60,50" 
+                     RangeIndicatorThickness="0" RangeIndicatorRadius="0" RangeIndicatorLightRadius="0" 
+                     RangeIndicatorLightOffset="40" ScaleLabelRadius="62" ScaleLabelSize="50,20" ScaleLabelFontSize="10" 
+                     ScaleLabelForeground="#FFA71F1F" MajorTickSize="10,3" MinorTickSize="4,1" 
+                     MajorTickColor="Black" MinorTickColor="Gray" ImageOffset="60" 
+                     GaugeBackgroundColor="White" PointerThickness ="8"
+                     DialTextOffset="0" DialText="" DialTextColor="Black"
+                     FontSize="18" BorderBrush="#FFA71F1F" Height="196" VerticalAlignment="Top"/>
+                </GroupBox>
+                <GroupBox Header="垂直搅拌器角度" Grid.Row="1" BorderBrush="#FFD8F2F5" FontSize="24">
+                    <Controls:CircularGaugeControl x:Name="Voltmeter1"
+                          Radius="30" ScaleRadius="80" ScaleStartAngle="270" ScaleSweepAngle="360"
+                          PointerLength="50" PointerCapRadius="20" MinValue="0" MaxValue="360" 
+                          MajorDivisionsCount="8" MinorDivisionsCount="5" OptimalRangeStartValue="0"
+                          OptimalRangeEndValue="360" CurrentValue="0" ImageSize="60,50" 
+                          RangeIndicatorThickness="0" RangeIndicatorRadius="0" RangeIndicatorLightRadius="0" 
+                          RangeIndicatorLightOffset="40" ScaleLabelRadius="62" ScaleLabelSize="50,20" ScaleLabelFontSize="10" 
+                          ScaleLabelForeground="#FFA71F1F" MajorTickSize="10,3" MinorTickSize="4,1" 
+                          MajorTickColor="Black" MinorTickColor="Gray" ImageOffset="60" 
+                          GaugeBackgroundColor="White" PointerThickness ="8"
+                          DialTextOffset="0" DialText="" DialTextColor="Black"
+                          FontSize="18" BorderBrush="#FFA71F1F" Height="196" VerticalAlignment="Top"/>
+                </GroupBox>
+                <StackPanel Grid.Row="3" Orientation="Horizontal" >
+                    <materialDesign:PackIcon Kind="AlarmLight" Width="30" Height="30" Margin="10" Foreground="#FF06CC00" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="00:00:00" Margin="40,10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <UniformGrid  Columns="4">
+                <Border Margin="20 40 20 40"
+                Background="White"
+                CornerRadius="20">
+                    <!-- Border内部直接放布局Grid -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DockPanel VerticalAlignment="Bottom" Margin="20 0 0 4">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="20 0 0 4">
+                                <!-- 单独图标，Fill单独控制颜色 -->
+                                <materialDesign:PackIcon 
+                                Kind="Sign" 
+                                Width="30" Height="30" 
+                                Foreground="#007ACC"
+                                Margin="0 0 8 0"/>
+                                <!-- 单独文字，颜色独立设置 -->
+                                <TextBlock Text="信号输出 (dBm)" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DockPanel>
+                        <Border Margin="20 0 20 0"
+                        BorderThickness="0 0 0 1"
+                        BorderBrush="DarkGray"
+                        VerticalAlignment="Bottom"/>
+                        <TextBlock Grid.Row="1"
+                       Text="0.00"
+                       FontSize="32"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="0"/>
+                    </Grid>
+                </Border>
+                <Border Margin="20 40 20 40"
+Background="White"
+CornerRadius="20">
+                    <!-- Border内部直接放布局Grid -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DockPanel VerticalAlignment="Bottom" Margin="20 0 0 4">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="20 0 0 4">
+                                <!-- 单独图标，Fill单独控制颜色 -->
+                                <materialDesign:PackIcon 
+                Kind="Sign" 
+                Width="30" Height="30" 
+                Foreground="#007ACC"
+                Margin="0 0 8 0"/>
+                                <!-- 单独文字，颜色独立设置 -->
+                                <TextBlock Text="当前频率 （MHz）" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DockPanel>
+                        <Border Margin="20 0 20 0"
+                        BorderThickness="0 0 0 1"
+                        BorderBrush="DarkGray"
+                        VerticalAlignment="Bottom"/>
+                        <TextBlock Grid.Row="1"
+                       Text="0.00"
+                       FontSize="32"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="0"/>
+                    </Grid>
+                </Border>
+                <Border Margin="20 40 20 40"
+                        Background="White"
+                        CornerRadius="20">
+                    <!-- Border内部直接放布局Grid -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DockPanel VerticalAlignment="Bottom" Margin="20 0 0 4">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="20 0 0 4">
+                                <!-- 单独图标，Fill单独控制颜色 -->
+                                <materialDesign:PackIcon 
+                                    Kind="ChartBellCurve" 
+                                    Width="30" Height="30" 
+                                    Foreground="#007ACC"
+                                    Margin="0 0 8 0"/>
+                                <!-- 单独文字，颜色独立设置 -->
+                                <TextBlock Text="功率监测（W）" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DockPanel>
+                        <Border Margin="20 0 20 0"
+                            BorderThickness="0 0 0 1"
+                            BorderBrush="DarkGray"
+                            VerticalAlignment="Bottom"/>
+                        <UniformGrid Columns="2" Rows="2" Grid.Row="1" Margin="20 0 0 0" VerticalAlignment="Center">
+                            <!-- 第一行 标题 -->
+                            <TextBlock FontSize="18" VerticalAlignment="Center" > 前向功率</TextBlock>
+                            <TextBlock FontSize="18" VerticalAlignment="Center">反向功率</TextBlock>
+
+
+                            <!-- 第二行 数值 -->
+                            <TextBlock FontSize="18" VerticalAlignment="Center" > 0.00</TextBlock>
+                            <TextBlock FontSize="18" VerticalAlignment="Center">0.00</TextBlock>
+
+                        </UniformGrid>
+                    </Grid>
+                </Border>
+                <Border Margin="20 40 20 40"
+                    Background="White"
+                    CornerRadius="20">
+                    <!-- Border内部直接放布局Grid -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DockPanel VerticalAlignment="Bottom" Margin="20 0 0 4">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="20 0 0 4">
+                                <!-- 单独图标，Fill单独控制颜色 -->
+                                <materialDesign:PackIcon 
+                                    Kind="HeartCircle" 
+                                    Width="30" Height="30" 
+                                    Foreground="#007ACC"
+                                    Margin="0 0 8 0"/>
+                                <!-- 单独文字，颜色独立设置 -->
+                                <TextBlock Text="场强监测（v/m）" FontSize="20" Foreground="Black" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DockPanel>
+                        <Border Margin="20 0 20 0"
+                            BorderThickness="0 0 0 1"
+                            BorderBrush="DarkGray"
+                            VerticalAlignment="Bottom"/>
+                        <UniformGrid Columns="4" Rows="2" Grid.Row="1" Margin="20 0 0 0" VerticalAlignment="Center">
+                            <!-- 第一行 标题 -->
+                            <TextBlock FontSize="18" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#007ACC">C</TextBlock>
+                            <TextBlock FontSize="18" VerticalAlignment="Center">X</TextBlock>
+                            <TextBlock FontSize="18" VerticalAlignment="Center">Y</TextBlock>
+                            <TextBlock FontSize="18" VerticalAlignment="Center">Z</TextBlock>
+
+                            <!-- 第二行 数值 -->
+                            <TextBlock FontSize="18" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#007ACC">0.00</TextBlock>
+                            <TextBlock FontSize="18" VerticalAlignment="Center">0.00</TextBlock>
+                            <TextBlock FontSize="18" VerticalAlignment="Center">0.00</TextBlock>
+                            <TextBlock FontSize="18" VerticalAlignment="Center">0.00</TextBlock>
+                        </UniformGrid>
+
+                    </Grid>
+                </Border>
+
+
+            </UniformGrid>
+            <UniformGrid Grid.Row="1" Columns =" 2">
+                <UseControls:UserChart 
+                    ChartTitle ="场强监测"
+                    XAxisTitle ="频率"
+                    YAxisTitle="峰值场强"
+                    XMinLimit="1"
+                    XMaxLimit="100000"
+                    ChartLines="{Binding BaseTasks.PowerCurveCollection}"
+                    >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="ChartCoordinateClicked">
+                            <i:InvokeCommandAction  Command="{Binding Chart1ClickCommand}"
+                    PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </UseControls:UserChart>
+                <UniformGrid  Rows="2">
+                    <UseControls:UserChart 
+                            ChartTitle ="发射天线注入平均功率监测"
+                            XAxisTitle ="频率"
+                            YAxisTitle="注入平均功率"
+                            XMinLimit="1"
+                            XMaxLimit="100000"
+                            ChartLines="{Binding BaseTasks.PowerCurveCollection}"
+                            >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="ChartCoordinateClicked">
+                                <i:InvokeCommandAction  Command="{Binding Chart1ClickCommand}"
+                                    PassEventArgsToCommand="True" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </UseControls:UserChart>
+                    <UseControls:UserChart 
+                        ChartTitle ="监测天线姐搜峰值功率监测"
+                        XAxisTitle ="频率"
+                        YAxisTitle="接收峰值功率"
+                        XMinLimit="1"
+                        XMaxLimit="100000"
+                        ChartLines="{Binding BaseTasks.PowerCurveCollection}"
+                        >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="ChartCoordinateClicked">
+                                <i:InvokeCommandAction  Command="{Binding Chart1ClickCommand}"
+                                        PassEventArgsToCommand="True" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </UseControls:UserChart>
+                </UniformGrid>
+            </UniformGrid>
+            <Controls:StatusIconTextButton Grid.Row="2" Label="{DynamicResource StartTestTitle}" IconSize="40" FontSize="20" Margin="10,10,1464,10" 
+            Background="#02DDDDDD" Foreground="#FF00B3FF" IconKind="Restart"
+            Command="{Binding StartRCFUTestCommand}"/>
+            <Controls:StatusIconTextButton Grid.Row="2" Label="{DynamicResource StopTestTitle}" IconSize="40"  FontSize="20"
+            Background="#02DDDDDD" Foreground="#FFFF0C00" Margin="105,10,1358,10"
+            IconKind="Stop" Command="{Binding StopRCFUTestCommand}" CommandParameter="2"/>
+            <Controls:StatusIconTextButton Grid.Row="2" Label="{DynamicResource PauseTestTitle}" IconSize="40" FontSize="20"
+                 Background="#02DDDDDD" Foreground="#FFEAB749" Margin="211,10,1264,10"
+                 IconKind="Pause" Command="{Binding ContinueRCFUTestCommand}" CommandParameter="2"/>
+            <Controls:StatusIconTextButton Grid.Row="2" Label="{DynamicResource DataImportTitle}" IconSize="40" FontSize="20"
+            Background="#02DDDDDD" Foreground="#FF17715F" Margin="1390,10,30,10"
+            IconKind="Database" Command="{Binding InportDataCommand}"/>
+            <Controls:StatusIconTextButton Grid.Row="2" Label="{DynamicResource DataAnalysisTitle}" IconSize="40" FontSize="20"
+            Background="#02DDDDDD" Foreground="#FF3354CD" Margin="1204,10,216,10"
+            IconKind="Analytics" Command="{Binding ToAnalysisPageCommand}" />
+
+
+        </Grid>
+
+    </Grid>
+</Page>

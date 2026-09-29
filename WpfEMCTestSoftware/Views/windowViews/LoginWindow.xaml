@@ -1,0 +1,176 @@
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    x:Class="WpfEMCTestSoftware.Views.LoginWindow"
+    mc:Ignorable="d" 
+    d:DesignHeight="810" d:DesignWidth="1440"
+    DataContext="{Binding LoginViewModel, Source={StaticResource Locator}}"    
+    Title="LoginPage" FontSize="32" WindowStyle="None" Background="{x:Null}"
+    MouseDown="Window_MouseDown" AllowsTransparency="True" ResizeMode="NoResize">
+    <Viewbox>
+        <Grid Height="798" Width="1440">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="280*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <!-- 主题联动渐变背景：强调色 → 面板色 → 强调淡色 -->
+                <LinearGradientBrush EndPoint="0.3,1.2" StartPoint="-0.1,-0.1">
+                    <GradientStop Color="{DynamicResource AccentColor}" Offset="0"/>
+                    <GradientStop Color="{DynamicResource SurfaceColor}" Offset="0.55"/>
+                    <GradientStop Color="{DynamicResource AccentLightColor}" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Images/登录页.png" />
+                </Grid.Background>
+                <Grid Height="795" VerticalAlignment="Bottom">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock FontSize="60" FontWeight="Bold" Foreground="White"
+                                       HorizontalAlignment="Center" Margin="0,195,0,0" TextAlignment="Center"
+                                       Text="{DynamicResource RegisterTitle}" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
+                    <TextBlock FontSize="30" Foreground="White" HorizontalAlignment="Center" 
+                                       Margin="0,298,0,0"
+                                       Text="{DynamicResource RegisterNewAccountMsg}" VerticalAlignment="Top"/>
+                    <Controls:RoundedButton Content="{DynamicResource RegisterTitle}" Height="70" 
+                                        Margin="0,442,0,0" VerticalAlignment="Top" HorizontalAlignment="Center"
+                                        Width="260" BorderThickness="0" 
+                                        CornerRadius="35" Foreground="{DynamicResource ButtonPrimaryFgBrush}" FontSize="36" 
+                                        FontFamily="KaiTi" Command="{Binding SwitchOperTypeCommand}" FontWeight="Bold"
+                                        Background="{DynamicResource ButtonPrimaryBgBrush}"/>
+                </Grid>
+            </Grid>
+            <!--登录页-->
+            <Grid Grid.Column="1" Visibility="{Binding OperType,Converter={StaticResource myBoolToDisVisibilityConverter}}">
+                <Grid Margin="0,272,0,0" Height="53" VerticalAlignment="Top" 
+                HorizontalAlignment="Center" Width="644">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="420"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="UserOutline" Foreground="{DynamicResource AccentBrush}" HorizontalAlignment="Right"
+                                             VerticalAlignment="Center" Height="53" Width="55" Margin="13,0,0,0"/>
+                    <TextBlock Text="{DynamicResource UserNameTitle}" VerticalAlignment="Center" Height="41" 
+                           HorizontalAlignment="Center" Grid.Column="1" FontFamily="YouYuan" 
+                           FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <TextBox Text="{Binding UserName, Mode=TwoWay}" Background="{DynamicResource InputBackgroundBrush}"
+                             BorderBrush="{DynamicResource InputBorderBrush}" CaretBrush="{DynamicResource AccentBrush}"
+                             Margin="10,0,0,0" Grid.Column="2" HorizontalAlignment="Left" Width="320" 
+                             Foreground="{DynamicResource TextPrimaryBrush}" />
+                </Grid>
+                <Grid Height="54" VerticalAlignment="Top" HorizontalAlignment="Center" Width="644" 
+                      Margin="0,416,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="420"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="LockOutline" Foreground="{DynamicResource AccentBrush}" Height="53" 
+                                         VerticalAlignment="Center" Width="55" Margin="13,0,0,0" 
+                                         HorizontalAlignment="Right"/>
+                    <TextBlock Text="{DynamicResource PasswordTitle}" VerticalAlignment="Center" 
+                               TextAlignment="Right" Grid.Column="1" Height="41" HorizontalAlignment="Center"
+                               FontFamily="YouYuan" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <PasswordBox materialDesign:PasswordBoxAssist.Password="{Binding PassWord, Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0" Background="{DynamicResource InputBackgroundBrush}"
+                                 BorderBrush="{DynamicResource InputBorderBrush}" CaretBrush="{DynamicResource AccentBrush}"
+                                 PasswordChar="*" MaxLength="20" VerticalContentAlignment="Center" 
+                                 Foreground="{DynamicResource TextPrimaryBrush}"
+                                 Grid.Column="2" HorizontalAlignment="Left" Width="320"/>
+                </Grid>
+                <Controls:RoundedButton Content="{DynamicResource LoginTitle}" Margin="0,592,0,0"
+                                    Command="{Binding UserOperCommand}" CommandParameter="Login" 
+                                    CornerRadius="20" Foreground="{DynamicResource ButtonPrimaryFgBrush}" VerticalAlignment="Top"
+                                    IsDefault="True" HorizontalAlignment="Center" Width="354" Height="56" FontFamily="SimHei" FontSize="40"
+                                    Background="{DynamicResource ButtonPrimaryBgBrush}"/>
+                <TextBlock FontSize="60"  FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}" TextAlignment="Center"
+                           Margin="0,117,0,0" Width="594" VerticalAlignment="Top" Height="91" 
+                           HorizontalAlignment="Center" Text="{DynamicResource UserLoginTitle}"/>
+                <CheckBox Content="{DynamicResource RememberPwdTitle}" Margin="336,483,372,0" 
+                      IsChecked="{Binding IsRememberPwd,Mode=TwoWay}" Foreground="{DynamicResource TextPrimaryBrush}" 
+                      FontFamily="YouYuan" FontSize="24" VerticalAlignment="Top"/>
+            </Grid>
+            <!--注册页-->
+            <Grid Grid.Column="1" Visibility="{Binding OperType,
+                Converter={StaticResource myBoolToVisibilityConverter}}">
+                <Grid Margin="0,244,0,0" Height="52" VerticalAlignment="Top" 
+                      HorizontalAlignment="Center" Width="690">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="450"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="UserOutline" Foreground="{DynamicResource AccentBrush}" Height="52" 
+                                         VerticalAlignment="Center" Width="55" HorizontalAlignment="Right"/>
+
+                    <TextBlock Text="{DynamicResource UserNameTitle}" VerticalAlignment="Center" Height="40" 
+                           HorizontalAlignment="Center" Grid.Column="1" FontFamily="YouYuan" 
+                           FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}" Width="98"/>
+                    <TextBox Text="{Binding UserInfo.UserName, Mode=TwoWay}" Background="{DynamicResource InputBackgroundBrush}" 
+                         Margin="10,0,0,0" Grid.Column="2" HorizontalAlignment="Left" Width="320"
+                         Foreground="{DynamicResource TextPrimaryBrush}" BorderBrush="{DynamicResource InputBorderBrush}" 
+                         CaretBrush="{DynamicResource AccentBrush}"/>
+                </Grid>
+                <Grid Margin="0,345,0,0" Height="52" VerticalAlignment="Top" Width="690" 
+                      HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="450"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="LockOutline" Foreground="{DynamicResource AccentBrush}" Height="53" Width="55" 
+                                         VerticalAlignment="Center" Margin="13,0,0,0" HorizontalAlignment="Right"/>
+                    <TextBlock Text="{DynamicResource PasswordTitle}" VerticalAlignment="Center"
+                           TextAlignment="Right" Grid.Column="1" Height="41" HorizontalAlignment="Center" 
+                           FontFamily="YouYuan" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <PasswordBox materialDesign:PasswordBoxAssist.Password="{Binding UserInfo.PassWord ,
+                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0" Background="{DynamicResource InputBackgroundBrush}" 
+                             PasswordChar="*" MaxLength="20" VerticalContentAlignment="Center" 
+                             Foreground="{DynamicResource TextPrimaryBrush}" CaretBrush="{DynamicResource AccentBrush}"
+                             Grid.Column="2" HorizontalAlignment="Left" Width="320" BorderBrush="{DynamicResource InputBorderBrush}"/>
+                </Grid>
+                <Controls:RoundedButton Content="{DynamicResource RegisterTitle}" Margin="0,613,0,0"
+                                    Command="{Binding UserOperCommand}" CommandParameter="Register"
+                                    CornerRadius="20" Foreground="{DynamicResource ButtonPrimaryFgBrush}" Width="354" Height="56" 
+                                    HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" FontFamily="KaiTi"
+                                    Background="{DynamicResource ButtonPrimaryBgBrush}"/>
+                <TextBlock FontSize="60" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}" TextAlignment="Center"
+                           Margin="0,84,0,0" Width="594" VerticalAlignment="Top" Height="91"
+                           HorizontalAlignment="Center" Text="{DynamicResource RegisterNewAccountMsg}"/>
+                <Grid Margin="0,448,0,0" Height="52" VerticalAlignment="Top" Width="690"
+                      HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="450"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="accountstaroutline" Foreground="{DynamicResource AccentBrush}" Height="53" 
+                                             VerticalAlignment="Center" Grid.ColumnSpan="1" Margin="0,0,5,0" 
+                                             Width="48" HorizontalAlignment="Right" />
+                    <TextBlock Text="{DynamicResource AuthorizedPersonTitle}" VerticalAlignment="Center" 
+                               Height="41" HorizontalAlignment="Center" Grid.Column="1" FontFamily="YouYuan" 
+                               FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <ComboBox Text="{Binding UserName, Mode=TwoWay}" ItemsSource="{Binding UserNames}"
+                              Margin="10,0,0,0" Grid.Column="2" HorizontalAlignment="Left" Width="320"
+                              Foreground="{DynamicResource TextPrimaryBrush}" Style="{DynamicResource ComboBoxStyle2}"
+                              ItemContainerStyle="{DynamicResource ComboBoxItemStyle3}" 
+                              MinWidth="200" VerticalAlignment="Center" Background="{DynamicResource InputBackgroundBrush}" 
+                              BorderBrush="{DynamicResource InputBorderBrush}" BorderThickness="2,2,2,2"/>
+                </Grid>
+            </Grid>
+            <Controls:StatusIconTextButton Grid.Column="1" Height="78" IsOnline="False" Label="" Width="90"
+                                           VerticalAlignment="Top" HorizontalAlignment="Right" IconSize="80" 
+                                           Background="Transparent" Foreground="{DynamicResource TextSecondaryBrush}" Cursor="Hand" IconKind="Close"
+                                           Margin="0,0,-10,0" Click="StatusIconTextButton_Click"/>
+        </Grid>
+    </Viewbox>
+</Window>

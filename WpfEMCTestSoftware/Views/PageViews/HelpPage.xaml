@@ -1,0 +1,126 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls"
+    x:Class="WpfEMCTestSoftware.Views.HelpPage"
+    xmlns:local="clr-namespace:WpfEMCTestSoftware"
+     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    DataContext="{Binding HelpViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d"
+    d:DesignHeight="893" d:DesignWidth="1840"
+    Title="HelpPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="126*"/>
+            <RowDefinition Height="336*"/>
+            <RowDefinition Height="266*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="使用帮助/帮助中心" Foreground="{DynamicResource TextPrimaryBrush}" Margin="20,30,0,0"  FontSize="24" FontWeight="Bold" />
+            <TextBlock Text="欢迎查阅Sinpel系统操作指南及更新动态" Foreground="{DynamicResource TextSecondaryBrush}" Margin="20,10,0,0"  FontSize="18" />
+            <Border Margin="20,0,20,20" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource AccentBrush}" VerticalAlignment="Bottom" Padding="0,0,0,20"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Border Margin="20,20,20,20" CornerRadius="20" BorderThickness="1 1 1 1" Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}" >
+                <Grid>
+                    <Rectangle  Height="60" Width="60" Margin="35,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RadiusX="60"  Fill="{DynamicResource AccentLightBrush}"  RadiusY="60"/>
+                    <md:PackIcon  Height="30" Width="30" Kind="TrayDownload"  Foreground="{DynamicResource AccentBrush}" Margin="50,48,0,0" />
+                    
+                    <TextBlock Text="检查更新" Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="121,47,0,0" FontSize="22" FontWeight="Bold"/>
+                    <TextBlock Text="当前系统版本" Foreground="{DynamicResource TextSecondaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="44,119,0,0" FontSize="19"/>
+                    <TextBlock Text="Ver 1.0.0"  Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="44,162,0,0" FontSize="21" FontWeight="Bold" />
+                    <Controls:RoundedButton 
+                        Content="{Binding CheckUpdateText,Mode=OneWay}" Margin="50,224,50,0" FontSize="22" Height="50" 
+                        IsEnabled="{Binding !IsChecking}"
+                        Command="{Binding UpdateButtonCommand
+                        }"  
+                    Background="{DynamicResource AccentBrush}" CornerRadius="10" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" 
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <TextBlock Text="{Binding StatusText}"  VerticalAlignment="Top" Margin="44,304,50,0" FontSize="21" 
+                               Foreground="#FFED540B"  TextWrapping="Wrap"/>
+
+                </Grid>
+
+            </Border>
+            <Border Grid.Column="1" CornerRadius="20" Margin="20,20,20,20" BorderThickness="1 1 1 1" Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}">
+                <Grid>
+                    <Rectangle  Height="60" Width="60" Margin="35,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RadiusX="60" Fill="{DynamicResource AccentLightBrush}" RadiusY="60"/>
+                    <md:PackIcon  Height="30" Width="30" Kind="QuestionBoxOutline" Foreground="{DynamicResource AccentBrush}" Margin="50,48,0,0" />
+                    <TextBlock Text="常见问题（FAQ）" Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="121,47,0,0" FontSize="22" FontWeight="Bold"/>
+                    <Button Style="{DynamicResource NoHoverButtonStyle}" Foreground="{DynamicResource TextPrimaryBrush}" Background="{x:Null}" Content="如何重置登录密码?" 
+                            Margin="35,139,0,0" FontSize="22" Height="46" BorderBrush="{x:Null}" Command="{Binding AddFreqBandCommand }"
+                            HorizontalAlignment="Left" Width="474" VerticalAlignment="Top" RenderTransformOrigin="0.444,-0.621" HorizontalContentAlignment="Left" />
+                    <Button Style="{DynamicResource NoHoverButtonStyle}" Foreground="{DynamicResource TextPrimaryBrush}" Background="{x:Null}" Content="数据无法导出怎么办?" 
+                    Margin="35,185,0,0" FontSize="22" Height="46" BorderBrush="{x:Null}" Command="{Binding AddFreqBandCommand }"
+                    HorizontalAlignment="Left" Width="217" VerticalAlignment="Top" RenderTransformOrigin="0.444,-0.621" />
+                    <Button Style="{DynamicResource NoHoverButtonStyle}" Foreground="{DynamicResource TextPrimaryBrush}" Background="{x:Null}" Content="设备初始化失败怎么办?" 
+                    Margin="35,236,0,0" FontSize="22" Height="46" BorderBrush="{x:Null}" Command="{Binding AddFreqBandCommand }"
+                    HorizontalAlignment="Left" Width="235" VerticalAlignment="Top" RenderTransformOrigin="0.444,-0.621" />
+                    <Button Style="{DynamicResource NoHoverButtonStyle}"  Foreground="{DynamicResource AccentBrush}" Background="{x:Null}" Content="查看更多问题..." 
+                    Margin="35,300,0,0" FontSize="22" Height="46" BorderBrush="{x:Null}" Command="{Binding AddFreqBandCommand }"
+                    HorizontalAlignment="Left" Width="159" VerticalAlignment="Top" RenderTransformOrigin="0.444,-0.621"  FontWeight="Bold" />
+
+
+                </Grid>
+            </Border>
+            <Border Grid.Column="2"  CornerRadius="20" Margin="20,20,20,20" BorderThickness="1 1 1 1" Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}">
+                <Grid>
+                    <Rectangle  Height="60" Width="60" Margin="35,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RadiusX="60" Fill="{DynamicResource AccentLightBrush}" RadiusY="60"/>
+                    <md:PackIcon  Height="30" Width="30" Kind="TelevisionGuide" Foreground="{DynamicResource AccentBrush}" Margin="50,48,0,0" />
+                    <TextBlock Text="系统操作指南" Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="121,47,0,0" FontSize="22" FontWeight="Bold"/>
+                    <TextBlock Text="获取最详尽的产品功能介绍与操作流程文档" Foreground="{DynamicResource TextSecondaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="44,119,0,0" FontSize="19" />
+
+                    <Button Style="{DynamicResource NoHoverButtonStyle}" Foreground="{DynamicResource TextPrimaryBrush}" Background="{x:Null}" Content="入门手册.pdf" 
+                    Margin="36,185,35,0" FontSize="22" Height="46" BorderBrush="Gray" Command="{Binding AddFreqBandCommand }" 
+                    VerticalAlignment="Top" 
+                    HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                    <Button Style="{DynamicResource NoHoverButtonStyle}" Foreground="{DynamicResource TextPrimaryBrush}" Background="{x:Null}"  Content="核心功能视频演示     "      
+                    Margin="35,265,35,0" FontSize="22" Height="46" BorderBrush="Gray" 
+                    Command="{Binding AddFreqBandCommand }" 
+                     VerticalAlignment="Top"/>
+
+
+                </Grid>
+            </Border>
+
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="1 1 1 1" CornerRadius="20" Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}" Margin="20,20,20,20">
+                <Grid>
+                    <Rectangle  Height="60" Width="60" Margin="35,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RadiusX="60" Fill="{DynamicResource AccentLightBrush}" RadiusY="60"/>
+                    <md:PackIcon  Height="30" Width="30" Kind="Support" Foreground="{DynamicResource AccentBrush}" Margin="50,48,0,0" />
+                    <md:PackIcon  Height="50" Width="50" Kind="Telephone" Foreground="{DynamicResource AccentBrush}" Margin="50,142,0,0" />
+                    <TextBlock Text="联系技术支持" Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="121,47,0,0" FontSize="22" FontWeight="Bold"/>
+                    <TextBlock Text="热线电话" Foreground="{DynamicResource TextPrimaryBrush}"  HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="121,129,0,0" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="400-856-0060" Foreground="{DynamicResource TextSecondaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="121,167,0,0" FontSize="22" />
+                    <TextBlock Text="周一至周五 09:00 - 18:00"  Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="121,208,0,0" FontSize="22" />
+                    <md:PackIcon  Height="50" Width="50" Kind="EmailAddOutline" Foreground="{DynamicResource AccentBrush}" Margin="660,142,0,0" />
+                    <TextBlock Text="邮箱咨询" Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="753,129,0,0" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="sales@sinpel.cn" Foreground="{DynamicResource TextSecondaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="753,167,0,0" FontSize="20" />
+                    <TextBlock Text="我们通常在24小时内回复"  Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="753,208,0,0" FontSize="22" />
+
+
+
+                </Grid>
+            </Border>
+            <Border Grid.Column="1" BorderThickness="1 1 1 1" CornerRadius="20" Background="{DynamicResource CardBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}" Margin="20,20,20,20">
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</Page>

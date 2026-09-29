@@ -1,0 +1,58 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Models="clr-namespace:WpfEMCTestSoftware.Models"
+    xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls"
+    x:Class="WpfEMCTestSoftware.Views.HardwareConfigPage"
+    DataContext="{Binding HardwareConfigViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d" FontSize="24"
+    d:DesignHeight="910" d:DesignWidth="1840"
+    Title="HardwareConfigPage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+        <TreeView ItemsSource="{Binding TreeItems}" SelectedItemChanged="TreeView_SelectedItemChanged"
+            SelectedValuePath="Name"
+            FontFamily="Microsoft YaHei" FontSize="24">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type Models:TreeItem}" ItemsSource="{Binding Children}">
+                    <StackPanel Orientation="Horizontal" Height="50">
+                        <Image Source="{Binding Icon}" Margin="10,0,5,10"/>
+                        <Label Content="{Binding Name}" HorizontalContentAlignment="Center" 
+                            VerticalContentAlignment="Center" FontSize="24" Foreground="{DynamicResource TextPrimaryBrush}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <Grid Grid.Column="1" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="61*"/>
+            </Grid.RowDefinitions>
+            <Frame Content="{Binding TemplatePage}" Grid.Row="2" NavigationUIVisibility="Hidden" Margin="1,1,1,1"/>
+            <Controls:RoundedButton Content="{DynamicResource ConfirmTitle}" HorizontalAlignment="Left" Height="46" 
+                                    Margin="622,0,0,0" VerticalAlignment="Center" Width="109" Command="{Binding ConfirmCommand}" CornerRadius="10" >
+                <Controls:RoundedButton.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF62F5E4" Offset="0.009"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Controls:RoundedButton.Background>
+            </Controls:RoundedButton>
+            <Controls:RoundedButton Content="{DynamicResource CencelTitle}" HorizontalAlignment="Left" Height="46" 
+                                    Margin="811,0,0,0" VerticalAlignment="Center" Width="109" Command="{Binding CencelCommand}" CornerRadius="10">
+                <Controls:RoundedButton.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFB4022"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Controls:RoundedButton.Background>
+            </Controls:RoundedButton>
+
+        </Grid>
+    </Grid>
+</Page>

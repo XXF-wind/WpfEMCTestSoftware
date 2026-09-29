@@ -1,0 +1,335 @@
+﻿<Page x:Class="WpfEMCTestSoftware.Views.PageViews.TestConfigViews.RVC_EMSTestConfigPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfEMCTestSoftware.Views.PageViews.TestConfigViews"
+      xmlns:Controls="clr-namespace:Company.UI.Controls;assembly=Company.UI.Controls" 
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+      xmlns:models="clr-namespace:WpfEMCTestSoftware.Models" 
+      xmlns:testmodels="clr-namespace:WpfEMCTestSoftware.Models.TestModels"
+      mc:Ignorable="d" 
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" 
+      DataContext="{Binding RVC_EMSTestConfigViewModel ,Source={StaticResource Locator}}"
+      d:DesignHeight="893" d:DesignWidth="1840"
+      Title="RVC_EMSTestConfigPage">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding FirstLoadPageCommand}"/>
+            </i:EventTrigger>
+            <i:EventTrigger EventName="Unloaded">
+                <i:InvokeCommandAction Command="{Binding PageUnloadedCommand }"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="85*"/>
+        </Grid.ColumnDefinitions>
+        <!--通用配置-->
+        <GroupBox  Grid.RowSpan="2" Header="通用配置">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height= "Auto"/>
+                </Grid.RowDefinitions>
+                <!--测试标准-->
+                <Grid Grid.Row="0">
+                    <TextBlock Text="执行标准" FontSize="20" Foreground="Black" FontWeight="Thin"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <ComboBox Height="40" Background="#ffffff" BorderBrush="#FFD9D9D9" Margin="0,28,0,0"  
+                        HorizontalAlignment="Stretch"
+                        ItemsSource="{Binding StandardList}"
+                        DisplayMemberPath="ShowText" SelectedValuePath="RealValue"
+                        SelectedValue="{Binding RVCEMSTestModel.CurEMSStandard , Mode=TwoWay}" 
+                        FontWeight="Normal" FontSize="16">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding StandComboxChangeCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                </Grid>
+                <!--测试阶段-->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="测试阶段" FontSize="20" Foreground="Black" FontWeight="Thin"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <ComboBox Height="40" Background="#ffffff" BorderBrush="#FFD9D9D9" Margin="0,29,0,1"
+                        ItemsSource="{Binding TestStageTypelist}"
+                        DisplayMemberPath="ShowText" SelectedValuePath="RealValue"
+                        SelectedValue="{Binding RVCEMSTestModel.CurTestStageType , Mode=TwoWay}" 
+                        FontWeight="Normal" FontSize="16">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding StandComboxChangeCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                </Grid>
+                <!--工作模式-->
+                <Grid Grid.Row="2">
+                    <TextBlock Text="工作模式" FontSize="20" Foreground="Black" FontWeight="Thin"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <ComboBox Height="40" Background="#ffffff" BorderBrush="#FFD9D9D9" Margin="0,28,0,0"  
+                        HorizontalAlignment="Stretch"
+                        ItemsSource="{Binding ReverbTestList}"
+                        DisplayMemberPath="ShowText" SelectedValuePath="RealValue"
+                        SelectedValue="{Binding RVCEMSTestModel.CurReverbTestMode , Mode=TwoWay}" 
+                        FontWeight="Normal" FontSize="16">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding StandComboxChangeCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                </Grid>
+                <!--预校准文件-->
+                <Grid Grid.Row="3">
+                    <TextBlock Text="预校准文件" FontSize="20" Foreground="Black" FontWeight="Thin"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <ComboBox Height="40" Background="#ffffff" BorderBrush="#FFD9D9D9" Margin="0,28,0,0"  
+                        HorizontalAlignment="Stretch"
+                        ItemsSource="{Binding StandardList}"
+                        DisplayMemberPath="ShowText" SelectedValuePath="RealValue"
+                        SelectedValue="{Binding EmsTestConfig.CurEMSStandard , Mode=TwoWay}" 
+                        FontWeight="Normal" FontSize="16">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding StandComboxChangeCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                </Grid>
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Background="Transparent"
+                    ItemsSource="{Binding RVCEMSTestModel.ListRvcFreBands,Mode=TwoWay}"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    AutoGenerateColumns="False"
+                    CanUserReorderColumns="False"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto"
+                    SelectedItem="{Binding CurRVCEMSFreBand,Mode=TwoWay}"                                   
+                    IsReadOnly="True" 
+                    FontSize="18"
+                    FontWeight="Normal" Margin="0" BorderBrush="#FF134371">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="FontWeight" Value="Normal"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
+                            PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <i:Interaction.Behaviors>
+                    <models:SmartDataGridColumnBehavior ModelType="{x:Type testmodels:RVC_EMSFreBand}"
+                    RefreshColumnsTrigger="{Binding RefreshColumnsTrigger}"/>
+                </i:Interaction.Behaviors>
+            </DataGrid>
+            <Controls:RoundedButton Content="添 加" Margin="0,128,0,0" Grid.Column="1" FontSize="24" Height="36" 
+                    Command="{Binding AddFreqBandCommand }"  
+                    Background="#FF8EEF73" CornerRadius="10" HorizontalAlignment="Center" Width="108" VerticalAlignment="Top" Foreground="#FF190B40"/>
+            <Controls:RoundedButton Content="删 除" Grid.Column="1" Margin="0,180,0,0" FontSize="18" Height="36" 
+                     Command="{Binding DelFreqBandCommand}" CornerRadius="10" HorizontalAlignment="Center" Width="106" 
+                                    VerticalAlignment="Top" Background="#FFED602A" Foreground="White"/>
+        </Grid>
+        <GroupBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Header="频段设置">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Frame Content="{Binding CurHardPage}" NavigationUIVisibility="Hidden"/>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="频率设置">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*" MinWidth="65"/>
+                                <ColumnDefinition Width="13*" MinWidth="90"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="起始频率" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <mah:NumericUpDown Grid.Column="1" Background="{x:Null}" Margin="0 5 0 5"
+                                     BorderBrush="Gainsboro" 
+                                    FontSize="24" Foreground="Black"
+                                    Value="{Binding CurRVCEMSFreBand.StartFre,Mode=TwoWay}"/>
+                            <ComboBox  Grid.Column="2"  BorderBrush="#FF84A4A4" Margin="0 5 0 5"
+                                   ItemsSource="{Binding FreUnitList}" 
+                                    DisplayMemberPath="ShowText" SelectedValuePath="RealValue"
+                                   SelectedValue = "{Binding CurRVCEMSFreBand.StartFreUnit,Mode=TwoWay}">
+                                <ComboBox.Background>
+                                    <SolidColorBrush Color="White" Opacity="0.8"/>
+                                </ComboBox.Background>
+                            </ComboBox>
+                            <!--终止频率-->
+                            <TextBlock Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Text="终止频率" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <mah:NumericUpDown  Grid.Row="1" Grid.Column="1" Background="{x:Null}"  Margin="0 5 0 5"
+                                   FontSize="24" BorderBrush="Gainsboro" Foreground="Black"
+                                   Value="{Binding CurRVCEMSFreBand.EndFreq,Mode=TwoWay}"/>
+                            <ComboBox Grid.Row="1" Grid.Column="2" BorderBrush="#FF84A4A4" Margin="0 5 0 5"
+                                   ItemsSource="{Binding FreUnitList}" 
+                                   DisplayMemberPath="ShowText" SelectedValuePath="RealValue"
+                                  SelectedValue = "{Binding CurRVCEMSFreBand.EndFreUnit,Mode=TwoWay}">
+                                <ComboBox.Background>
+                                    <SolidColorBrush Color="White" Opacity="0.8"/>
+                                </ComboBox.Background>
+                            </ComboBox>
+                            <!--频率步进-->
+                            <TextBlock Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" 
+                                       Text="频率步进" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <mah:NumericUpDown Grid.Row="2" Grid.Column="1" Background="{x:Null}"  
+                                FontSize="24" BorderBrush="Gainsboro" Foreground="Black" Margin="0 5 0 5"
+                                Value="{Binding CurRVCEMSFreBand.Stepsize,Mode=TwoWay}"/>
+                            <ComboBox Grid.Row="2" Grid.Column="2" BorderBrush="#FF84A4A4" Margin="0 5 0 5"
+                                ItemsSource="{Binding FreUnitList}" 
+                                DisplayMemberPath="ShowText" SelectedValuePath="RealValue"
+                               SelectedValue="{Binding CurRVCEMSFreBand.StepUnit,Mode=TwoWay}">
+                                <ComboBox.Background>
+                                    <SolidColorBrush Color="White" Opacity="0.8"/>
+                                </ComboBox.Background>
+                            </ComboBox>
+                            <!--步进模式-->
+                            <TextBlock Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" Text="步进模式" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <ComboBox Grid.Row="3" Grid.Column="1"  BorderBrush="#FF84A4A4" Margin="0 5 0 5"
+                              ItemsSource="{Binding StepModesList}"
+                              DisplayMemberPath="ShowText" SelectedValuePath="RealValue"
+                              SelectedValue="{Binding CurRVCEMSFreBand.Mstepmode,Mode=TwoWay}">
+                                <ComboBox.Background>
+                                    <SolidColorBrush Color="White" Opacity="0.8"/>
+                                </ComboBox.Background>
+                            </ComboBox>
+                        </Grid>
+                    </GroupBox>
+                    <Grid  Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <!-- 两行都是1份，自动平分高度 1:1 -->
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <GroupBox Header="调制类型"   >
+                            <ComboBox HorizontalAlignment="Center" BorderBrush="#FF84A4A4" Margin="0 20 0 55"
+                                ItemsSource="{Binding ModTypeList}"
+                                DisplayMemberPath="ShowText" SelectedValuePath="RealValue"
+                                SelectedValue="{Binding CurRVCEMSFreBand.ModulationType,Mode=TwoWay}" Width="229">
+                                <ComboBox.Background>
+                                    <SolidColorBrush Color="White" Opacity="0.8"/>
+                                </ComboBox.Background>
+                            </ComboBox>
+                        </GroupBox>
+                        <GroupBox Header="驻留时间" Grid.Row="1" >
+                            <StackPanel Orientation="Horizontal" >
+                                <mah:NumericUpDown Background="{x:Null}" Margin="10,20,20,60" 
+                                    BorderBrush="Gainsboro" 
+                                 FontSize="24" Foreground="Black"
+                                 Value="{Binding CurRVCEMSFreBand.FreqDwellTime,Mode=TwoWay}" />
+                                <TextBlock TextWrapping="Wrap" Text="ms" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,20,0,60"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                    <GroupBox Grid.Row="1" Grid.ColumnSpan="2" Header="限制值设置">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.2*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock TextWrapping="Wrap" Text="幅值上限" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <mah:NumericUpDown Grid.Row="0" Grid.Column="1" Background="{x:Null}"  Foreground="Black" FontSize="24"
+                             Value="{Binding CurRVCEMSFreBand.UpperLimit, Mode=TwoWay}" BorderBrush="Gainsboro" Margin="0,5,60,5"/>
+                            <TextBlock Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" Text="幅值下限" HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" />
+                            <mah:NumericUpDown Grid.Row="0" Grid.Column="3" Background="{x:Null}" Foreground="Black" FontSize="24"
+                             Value="{Binding CurRVCEMSFreBand.LowerLimit, Mode=TwoWay}" BorderBrush="Gainsboro" Margin="0,5,60,5"/>
+                            <RadioButton Content="定值" Grid.Row="1" IsChecked="{Binding CurRVCEMSFreBand.IimitType, 
+                                ConverterParameter=0, Converter={StaticResource EnumToBooleanConverter}}"
+                                HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <mah:NumericUpDown  Grid.Row="1" Grid.Column="1" Background="{x:Null}"  Foreground="Black" 
+                            FontSize="24" Value="{Binding CurRVCEMSFreBand.ConstlimitLevel, Mode=TwoWay}" 
+                                                BorderBrush="Gainsboro" RenderTransformOrigin="0.598,-0.786"  Margin="0,5,60,5"/>
+                            <RadioButton Content="文件导入" Height="20" Grid.Row="2"
+                                 IsChecked="{Binding CurRVCEMSFreBand.IimitType, ConverterParameter=1, Converter={StaticResource EnumToBooleanConverter}}"
+                                 HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap"   
+                                 Text="{Binding CurRVCEMSFreBand.ImmunityTableAddr, Mode=TwoWay}" Margin="0,5,95,5" />
+                            <Controls:StatusIconTextButton Content="StatusIconTextButton" Grid.Row="2" Grid.Column="3"
+                                 IconSize="30" FontSize="24" Foreground="#007ACC"
+                                IconKind="ExitToApp" Label=""
+                                 RenderTransformOrigin="2.495,4.353" Background="{x:Null}" Margin="0,5,53,5" 
+                                                           HorizontalAlignment="Right" Width="31"/>
+                        </Grid>
+
+                    </GroupBox>
+
+                </Grid>
+            </Grid>
+        </GroupBox>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Controls:StatusIconTextButton Width="150"
+                IconSize="70" FontSize="25" Background="#19DDDDDD" Foreground="#FF6C6969 "
+                Label="{DynamicResource ExitTitle}" IconKind="ExitToApp"
+                Command="{Binding ExitTestConfigCommand}" 
+                RenderTransformOrigin="2.495,4.353"
+                HorizontalAlignment="Left"  />
+            <Controls:StatusIconTextButton Width="150"
+             IconSize="70" FontSize="25" Background="#19DDDDDD" Foreground="#FF52C41A"
+             Label="{DynamicResource SaveASConfigTitle}" IconKind="ContentSaveAll"
+             Command="{Binding SaveAsTestConfigCommand }"
+             RenderTransformOrigin="2.495,4.353"  Grid.Row="1" />
+            <Controls:StatusIconTextButton
+              IconSize="70" FontSize="25" Background="#19DDDDDD" Foreground="#FF1890FF"
+              Label="{DynamicResource SaveConfigTitle}" IconKind="ContentSaveEdit"
+              Command="{Binding SaveTestConfigCommand}"  RenderTransformOrigin="2.495,4.353" 
+              HorizontalAlignment="Left" Width="150" Grid.Row="1"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

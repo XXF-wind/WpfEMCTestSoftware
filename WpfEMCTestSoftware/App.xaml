@@ -1,0 +1,100 @@
+﻿<Application x:Class="WpfEMCTestSoftware.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfEMCTestSoftware"
+             xmlns:Core="clr-namespace:WpfEMCTestSoftware.Core"
+             xmlns:CompanyUIConverters="clr-namespace:Company.UI.Controls.Converters;assembly=Company.UI.Controls"
+             xmlns:EMCUIConverters ="clr-namespace:WpfEMCTestSoftware.Converters"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             Startup="Application_Startup"
+             ShutdownMode="OnExplicitShutdown">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- 自定义控件样式 -->
+                <ResourceDictionary Source="pack://application:,,,/Company.UI.Controls;component/Themes/Generic.xaml"/>
+                <!-- MaterialDesign 基主题（Light/Dark 由 ThemeManager 运行时切换） -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml"/>
+                <!-- 主题资源（由 ThemeManager 初始化时替换） -->
+                <ResourceDictionary Source="Resources/Themes/LightTheme.xaml"/>
+                <!-- 语言资源 -->
+                <ResourceDictionary Source="Resources/zh-CN.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <CompanyUIConverters:PasswordMatchConverter x:Key="PasswordMatchConverter"/>
+            <CompanyUIConverters:ValueToPermissionsConverter x:Key="ValueToPermissionsConverter"/>
+            <CompanyUIConverters:BoolToVisibilityConverter x:Key="myBoolToVisibilityConverter"/>
+            <CompanyUIConverters:BoolToDisVisibilityConverter x:Key="myBoolToDisVisibilityConverter"/>
+            <CompanyUIConverters:LogTextToColorConvert x:Key="logTextToColorConvert"/>
+            <CompanyUIConverters:BoolenToColorConverter x:Key="boolenToColorConverter"/>
+            <CompanyUIConverters:BoolenToBackColorConverter x:Key="BoolenToBackColorConverter"/>
+            <CompanyUIConverters:ValueToVisibilityConverter x:Key="valueToVisibilityConverter"/>
+            <CompanyUIConverters:StringToVisibilityConverter x:Key="stringToVisibilityConverter"/>
+            <CompanyUIConverters:StringCompareToVisibilityConverter x:Key="StringCompareToVisibilityConverter"/>
+            <CompanyUIConverters:StringCompareToDisVisibilityConverter x:Key="StringCompareToDisVisibilityConverter"/>
+            <CompanyUIConverters:IsSelectedToForeColorConverter x:Key="IsSelectedToForeColorConverter"/>
+            <EMCUIConverters:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+            <CompanyUIConverters:ValueToBoolConverter x:Key="ValueToBoolConverter"/>
+            <EMCUIConverters:ChannelStatusToBrushConverter x:Key="ChannelStatusToBrushConverter"/>
+            <local:ViewModelLocator x:Key="Locator"/>
+
+            <DataTemplate x:Key="TileItemTemplate">
+                <Border Margin="20,1,20,1" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                    CornerRadius="8" Cursor="Hand">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSelected,
+                                    RelativeSource={RelativeSource AncestorType=ListViewItem}}" Value="True">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#2563EB"/>
+                                                <GradientStop Color="#06B6D4" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+                        <TextBlock Text="{Binding BandName}" FontSize="18" FontWeight="Bold"
+                               HorizontalAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsSelected,
+                                            RelativeSource={RelativeSource AncestorType=ListViewItem}}" Value="True">
+                                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+            </DataTemplate>
+            <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Cursor" Value="Arrow"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListViewItem">
+                            <ContentPresenter/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- 浅色主题：微微红的背景 + 深红文字 -->
+            <SolidColorBrush x:Key="TestRunningBgBrush" Color="#FDE8E8"/>
+            <SolidColorBrush x:Key="TestRunningFgBrush" Color="#C0392B"/>
+
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>
